@@ -406,6 +406,10 @@ export const GEARS_LEVELS = makeLevels();
 
 // ---- Rendering ----
 export function renderGearsLevel(container, levelIndex, opts) {
+  // Defensive: drag lifts gears to document.body during pointer-capture.
+  // If a prior session got into a weird state and stranded one, clean it up.
+  document.querySelectorAll('body > .gear-part').forEach(el => el.remove());
+
   const level = GEARS_LEVELS[levelIndex];
   if (!level) {
     container.innerHTML = '<p style="padding:20px;">Level not found.</p>';
@@ -556,7 +560,9 @@ export function renderGearsLevel(container, levelIndex, opts) {
         sfx.snap();
         placedCount++;
         setTimeout(() => {
-          if (won) return;
+          // Always re-parent — even if `won` just got set, the win animation
+          // needs every gear inside the frame. If we skip this, the last gear
+          // is stranded on document.body and survives the next level render.
           frame.appendChild(part);
           const def = GEAR_DEFS[targetSlot.size];
           const d = def.r * 2 + 6;
