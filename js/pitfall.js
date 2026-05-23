@@ -666,6 +666,10 @@ export function renderPitfallLevel(container, levelIndex, opts) {
       vineIdx: null,   // index into hazards if grabbing a vine, else null
       // For quicksand drag
       inQuicksand: false,
+      // Set when the player has stepped off a cliff edge into a pit / open
+      // water — once set, the player keeps falling (no ground snap-back)
+      // until they hit the death depth.
+      fallingDeath: null,
     };
     // Reset log positions
     hazards.forEach(h => {
@@ -936,24 +940,34 @@ export function renderPitfallLevel(container, levelIndex, opts) {
     const pit = isOverPit(state.px);
     const crocPool = isOverCrocPool(state.px);
 
-    // INSTANT-DEATH check FIRST: if the player has dropped to (or below)
-    // ground level while over a pit or open water, they have fallen in.
-    // Without this, the player would only fall briefly before vx carried
-    // them past the pit edge and the next frame's ground check snapped
-    // them back to py=0 — i.e. bouncing out instead of dying.
-    if (pit && state.py <= 0) {
-      die('pit');
-      return;
-    }
-    if (crocPool) {
-      const headCroc = crocHeadAt(crocPool, state.px);
-      if (!headCroc && state.py <= 0) {
-        die('water');
-        return;
+    // ---- Trigger "falling into the pit" on the frame the player steps off
+    // the edge. Stop their forward velocity so they drop straight down for a
+    // clear visual, and keep them in that falling state until the death
+    // depth is reached (no ground snap-back on subsequent frames).
+    if (!state.fallingDeath) {
+      if (pit && state.py <= 0) {
+        state.fallingDeath = 'pit';
+        state.vx = 0;
+        state.vy = -20; // gentle initial drop so the fall is visible
+      } else if (crocPool) {
+        const headCroc = crocHeadAt(crocPool, state.px);
+        if (!headCroc && state.py <= 0) {
+          state.fallingDeath = 'water';
+          state.vx = 0;
+          state.vy = -20;
+        }
       }
     }
 
-    if (pit) {
+    if (state.fallingDeath) {
+      // Skip ground handling entirely — keep falling.
+      groundY = -10000;
+      // Die once the player has dropped ~half a pit depth below ground.
+      if (state.py < -50) {
+        die(state.fallingDeath);
+        return;
+      }
+    } else if (pit) {
       // Above the pit (mid-jump) — no ground until past it
       groundY = -10000;
     } else if (crocPool) {
@@ -961,16 +975,15 @@ export function renderPitfallLevel(container, levelIndex, opts) {
       groundY = headCroc ? 40 : -10000;
     }
 
-    if (state.py <= groundY) {
+    if (!state.fallingDeath && state.py <= groundY) {
       state.py = groundY;
       state.vy = 0;
       state.grounded = true;
-    } else {
+    } else if (!state.fallingDeath) {
       state.grounded = false;
     }
 
-    // Safety net: falling well out of the world also dies (shouldn't reach
-    // here normally because the instant-death checks above catch the case).
+    // Safety net: falling well out of the world also dies.
     if (state.py < -200) {
       die('fall');
       return;
