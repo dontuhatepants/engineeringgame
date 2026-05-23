@@ -678,6 +678,9 @@ export function renderPitfallLevel(container, levelIndex, opts) {
       runBob: 0,
       // Vine attachment
       vineIdx: null,   // index into hazards if grabbing a vine, else null
+      // Per-vine cooldown timestamps — vines whose entry is > state.t can't
+      // be grabbed yet. Used to prevent immediate re-grab right after release.
+      vineCooldown: {},
       // For quicksand drag
       inQuicksand: false,
       // Set when the player has stepped off a cliff edge into a pit / open
@@ -855,22 +858,26 @@ export function renderPitfallLevel(container, levelIndex, opts) {
     if (state.dead || state.won) return;
     e.preventDefault();
     if (state.vineIdx !== null) {
-      // Release the vine — convert vine velocity to player velocity
+      // Release the vine — convert swing momentum to player velocity and
+      // launch them in a jump arc that always clears the pit ahead.
       const h = hazards[state.vineIdx];
-      // Player position at release:
+      const releasedIdx = state.vineIdx;
       const bobX = h.x + Math.sin(h._angle) * VINE_LEN;
       const bobY = (h.y || 220) - Math.cos(h._angle) * VINE_LEN;
-      // Tangent velocity: angular omega * VINE_LEN, direction perpendicular
-      // to the rope, i.e. (cos(angle), sin(angle)) for the swing motion.
+      // Tangent velocity: angular omega * VINE_LEN, perpendicular to the rope
       const tangentX =  Math.cos(h._angle) * h._omega * VINE_LEN;
       const tangentY =  Math.sin(h._angle) * h._omega * VINE_LEN;
       state.px = bobX;
-      state.py = Math.max(20, bobY);
-      // Push the player forward + give them an upward kick
-      state.vx = Math.max(RUN_SPEED, RUN_SPEED + tangentX * 0.5);
-      state.vy = Math.max(120, -tangentY * 0.5 + 200);
+      // Hanging position: head at bob, body below.
+      state.py = bobY - PLAYER_H;
+      // Strong forward boost + full jump impulse so the player always clears
+      // pits regardless of which point in the swing they tap to release.
+      state.vx = Math.max(280, RUN_SPEED + tangentX * 0.6);
+      state.vy = Math.max(JUMP_VEL, -tangentY * 0.5 + 320);
       state.vineIdx = null;
       state.grounded = false;
+      // Don't let the same vine immediately re-grab the player.
+      state.vineCooldown[releasedIdx] = state.t + 0.6;
       sfx.snap();
       return;
     }
@@ -902,9 +909,13 @@ export function renderPitfallLevel(container, levelIndex, opts) {
       h._omega += alpha * dt;
       h._omega *= Math.pow(VINE_DAMP, dt * 60);
       h._angle += h._omega * dt;
-      // Player position locked to bob
-      state.px = h.x + Math.sin(h._angle) * VINE_LEN;
-      state.py = (h.y || 220) - Math.cos(h._angle) * VINE_LEN;
+      // Player hangs FROM the bob — head at bob, body hanging below.
+      // state.py is the player's bottom (feet), so subtract PLAYER_H to put
+      // the top of the player at the bob.
+      const bobX = h.x + Math.sin(h._angle) * VINE_LEN;
+      const bobY = (h.y || 220) - Math.cos(h._angle) * VINE_LEN;
+      state.px = bobX;
+      state.py = bobY - PLAYER_H;
       // Camera follows player loosely
       const targetCam = Math.max(0, Math.min(level.width - LOGICAL_W, state.px - LOGICAL_W * 0.35));
       state.camX += (targetCam - state.camX) * Math.min(1, dt * 6);
@@ -1009,6 +1020,8 @@ export function renderPitfallLevel(container, levelIndex, opts) {
       for (let i = 0; i < hazards.length; i++) {
         const h = hazards[i];
         if (h.type !== 'vine') continue;
+        // Skip vines in cooldown (just-released)
+        if ((state.vineCooldown[i] || 0) > state.t) continue;
         const bobX = h.x + Math.sin(h._angle) * VINE_LEN;
         const bobY = (h.y || 220) - Math.cos(h._angle) * VINE_LEN;
         const dx = bobX - state.px;
