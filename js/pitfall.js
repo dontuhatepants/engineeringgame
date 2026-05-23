@@ -111,7 +111,9 @@ export const PITFALL_LEVELS = [
       { type: 'pit', x: 350, w: 70 },
       { type: 'log', x: 800, speed: 90 },
       { type: 'pit', x: 1100, w: 70 },
-      { type: 'log', x: 1400, speed: 80 },
+      // Slowed from 80 → 50 so collision lands inside the pit-jump arc
+      // (player airborne for pit, log passes under).
+      { type: 'log', x: 1400, speed: 50 },
     ],
     goal: { type: 'flag', x: 1640 },
   },
@@ -173,9 +175,11 @@ export const PITFALL_LEVELS = [
     name: 'Sand Trap', width: 1700, bg: 'jungle',
     hazards: [
       { type: 'log', x: 350, speed: 80 },
-      { type: 'quicksand', x: 600, w: 100 },
+      // Narrowed quicksand 100 → 70: width 100 left only 15 px of valid
+      // jump-start window; width 70 gives a forgiving 45 px window.
+      { type: 'quicksand', x: 600, w: 70 },
       { type: 'snake', x: 950 },
-      { type: 'quicksand', x: 1200, w: 100 },
+      { type: 'quicksand', x: 1200, w: 70 },
       { type: 'scorpion', x: 1450 },
     ],
     goal: { type: 'flag', x: 1640 },
@@ -185,8 +189,12 @@ export const PITFALL_LEVELS = [
     hazards: [
       { type: 'pit', x: 300, w: 70 },
       { type: 'snake', x: 550 },
-      { type: 'quicksand', x: 800, w: 90 },
-      { type: 'log', x: 1100, speed: 90 },
+      // Narrowed quicksand 90 → 70 for a forgiving jump-start window.
+      { type: 'quicksand', x: 800, w: 70 },
+      // Log speed 90 → 30 so it doesn't trigger a competing earlier jump
+      // before the quicksand one. With speed 30 the log is comfortably past
+      // the player by the time the quicksand-jump lands.
+      { type: 'log', x: 1100, speed: 30 },
       { type: 'scorpion', x: 1400 },
       { type: 'snake', x: 1650 },
     ],
