@@ -328,7 +328,7 @@ const RUN_SPEED = 220;          // world px / sec
 const JUMP_VEL  = 540;          // initial upward vel
 const GRAVITY   = 1400;         // px / sec^2 (downward when y is up)
 const QUICKSAND_PULL = 90;      // downward speed inside quicksand
-const VINE_LEN  = 160;          // pendulum length
+const VINE_LEN  = 110;          // pendulum length — bob hangs at jump-apex height
 const VINE_GRAV = 7.0;          // angular gravity for the pendulum
 const VINE_DAMP = 0.998;        // gentle damping per frame
 const CROC_PERIOD = 1.6;        // seconds for full open/close cycle
@@ -604,6 +604,10 @@ export function renderPitfallLevel(container, levelIndex, opts) {
       el.className = 'pf-vine';
       el.style.height = VINE_LEN + 'px';
       el.dataset.idx = i;
+      // Add the pulsing grab-target marker at the bob end
+      const grab = document.createElement('div');
+      grab.className = 'pf-vine-grab';
+      el.appendChild(grab);
       world.appendChild(el);
       h._el = el;
       // angle in radians, swings between roughly -0.7 and +0.7
@@ -1009,7 +1013,7 @@ export function renderPitfallLevel(container, levelIndex, opts) {
         const bobY = (h.y || 220) - Math.cos(h._angle) * VINE_LEN;
         const dx = bobX - state.px;
         const dy = bobY - (state.py + PLAYER_H * 0.5);
-        if (dx * dx + dy * dy < 50 * 50) {
+        if (dx * dx + dy * dy < 80 * 80) {
           // Grab! Compute initial omega from player velocity tangent.
           state.vineIdx = i;
           // tangent direction at current angle

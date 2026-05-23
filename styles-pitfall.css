@@ -158,6 +158,34 @@
   background: radial-gradient(circle, #5a9e3a 0%, #3a7020 80%);
   border-radius: 50%;
 }
+/* Pulsing "grab here" target at the vine bob. Sits on top of the leaf
+   so the player can see exactly where to be to grab. */
+.pf-vine-grab {
+  position: absolute;
+  bottom: -25px;     /* center the 50px marker on the vine bob */
+  left: -22px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 217, 102, 0.9);
+  box-shadow:
+    inset 0 0 12px rgba(255, 217, 102, 0.6),
+    0 0 16px rgba(255, 217, 102, 0.5);
+  animation: pf-vine-pulse 1.1s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes pf-vine-pulse {
+  0%, 100% {
+    transform: scale(0.85);
+    border-color: rgba(255, 217, 102, 0.7);
+    box-shadow: inset 0 0 8px rgba(255, 217, 102, 0.4), 0 0 10px rgba(255, 217, 102, 0.3);
+  }
+  50% {
+    transform: scale(1.15);
+    border-color: rgba(255, 240, 150, 1);
+    box-shadow: inset 0 0 16px rgba(255, 240, 150, 0.8), 0 0 24px rgba(255, 217, 102, 0.7);
+  }
+}
 
 /* Goal flag + chest */
 .pf-goal {
