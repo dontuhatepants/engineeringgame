@@ -405,16 +405,16 @@ export const BRIDGE_LEVELS = [
   }),
   makeLevel({
     name: 'Two Planks',
-    build: { cols: 9, rows: 5, leftCliffCols: 2, rightCliffCols: 2, cliffTopRow: 3 },
+    build: { cols: 8, rows: 5, leftCliffCols: 2, rightCliffCols: 2, cliffTopRow: 3 },
     chasm: { kind: 'water', topRow: 4, bottomRow: 4 },
-    tray: { plank: 3 }, // need at least 2 to bridge 5 cells, give a few
+    tray: { plank: 3 }, // 4-cell gap, 2 planks needed (1 decoy)
     vehicle: 'horse',
   }),
   makeLevel({
     name: 'Long Reach',
-    build: { cols: 9, rows: 5, leftCliffCols: 2, rightCliffCols: 2, cliffTopRow: 3 },
+    build: { cols: 10, rows: 5, leftCliffCols: 2, rightCliffCols: 2, cliffTopRow: 3 },
     chasm: { kind: 'water', topRow: 4, bottomRow: 4 },
-    tray: { longPlank: 2 },  // 5 cells, two long planks (3+3>=5)
+    tray: { longPlank: 2 },  // 6-cell gap, two long planks exact
     vehicle: 'bike',
   }),
   makeLevel({
@@ -449,31 +449,31 @@ export const BRIDGE_LEVELS = [
   makeLevel({
     name: 'Twin Supports',
     build: {
-      cols: 11, rows: 6, leftCliffCols: 2, rightCliffCols: 2,
+      cols: 12, rows: 6, leftCliffCols: 2, rightCliffCols: 2,
       cliffTopRow: 3, groundRow: 5,
     },
     chasm: { kind: 'lava', topRow: 5, bottomRow: 5 },
-    tray: { plank: 4, pillar1: 3 },
+    tray: { plank: 4, pillar1: 3 }, // 8-cell gap, 4 planks exact
     vehicle: 'tank',
   }),
   makeLevel({
     name: 'Lava Reach',
     build: {
-      cols: 11, rows: 6, leftCliffCols: 2, rightCliffCols: 2,
+      cols: 13, rows: 6, leftCliffCols: 2, rightCliffCols: 2,
       cliffTopRow: 3, groundRow: 5,
     },
     chasm: { kind: 'lava', topRow: 5, bottomRow: 5 },
-    tray: { longPlank: 3, pillar1: 2 },
+    tray: { longPlank: 3, pillar1: 2 }, // 9-cell gap, 3 long planks exact
     vehicle: 'horse',
   }),
   makeLevel({
     name: 'Tall Pillars',
     build: {
-      cols: 11, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
+      cols: 12, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
       cliffTopRow: 3, groundRow: 6,
     },
     chasm: { kind: 'water', topRow: 4, bottomRow: 6 },
-    tray: { plank: 4, pillar2: 3 },
+    tray: { plank: 4, pillar2: 3 }, // 8-cell gap, 4 planks exact
     vehicle: 'fireTruck',
   }),
 
