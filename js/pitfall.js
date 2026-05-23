@@ -132,7 +132,9 @@ export const PITFALL_LEVELS = [
       { type: 'scorpion', x: 650 },
       { type: 'pit', x: 900, w: 80 },
       { type: 'scorpion', x: 1200 },
-      { type: 'log', x: 1500, speed: 90 },
+      // Slowed from 90 → 50 so the log arrives during the scorpion-jump
+      // (player airborne) rather than in the dead-zone between pit and scorpion.
+      { type: 'log', x: 1500, speed: 50 },
     ],
     goal: { type: 'flag', x: 1740 },
   },
