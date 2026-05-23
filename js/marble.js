@@ -428,6 +428,396 @@ export const MARBLE_LEVELS = [
     })(),
     tray: { rampR: 3, rampL: 2 /* decoy */, straight: 5, chute: 6, funnel: 1 /* decoy */ },
   },
+
+  // ===== L26-L30: 8x7, mild obstacles, 7-9 pieces =====
+  // L26: 7 chutes straight down col 3. Walls are visual flavor only.
+  {
+    name: 'Straight Shooter',
+    rows: 8, cols: 7,
+    drop: { col: 3 }, goal: { row: 7, col: 3 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[3 * 7 + 1] = 'wall';
+      t[5 * 7 + 5] = 'wall';
+      return t;
+    })(),
+    tray: { chute: 7, rampR: 1 /* decoy */, rampL: 1 /* decoy */ },
+  },
+  // L27: rampR(0,0), 3 straights, rampR(0,4) W->S, 3 chutes to goal (4,4).
+  {
+    name: 'Long Shelf',
+    rows: 8, cols: 7,
+    drop: { col: 0 }, goal: { row: 4, col: 4 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[6 * 7 + 2] = 'wall';
+      t[6 * 7 + 5] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 3, chute: 3, rampL: 1 /* decoy */ },
+  },
+  // L28: mirror of L27. rampL(0,6), 3 straights, rampL(0,2) E->S, 3 chutes to (4,2).
+  {
+    name: 'Long Shelf Left',
+    rows: 8, cols: 7,
+    drop: { col: 6 }, goal: { row: 4, col: 2 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[6 * 7 + 1] = 'wall';
+      t[6 * 7 + 4] = 'wall';
+      return t;
+    })(),
+    tray: { rampL: 2, straight: 3, chute: 3, rampR: 1 /* decoy */ },
+  },
+  // L29: drop col 2 -> goal (6,4). (0,2)chute, (1,2)rampR N->E, straight(1,3), rampR(1,4)W->S, chutes col 4 rows 2-5, goal(6,4). Wall (3,3) decorative.
+  {
+    name: 'Step Across',
+    rows: 8, cols: 7,
+    drop: { col: 2 }, goal: { row: 6, col: 4 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[3 * 7 + 3] = 'wall';
+      t[5 * 7 + 1] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 1, chute: 5, funnel: 1 /* decoy */ },
+  },
+  // L30: drop col 0 -> goal (3,6). rampR(0,0), 5 straights, rampR(0,6)W->S, chutes (1,6),(2,6), goal(3,6).
+  {
+    name: 'Top Shelf Run',
+    rows: 8, cols: 7,
+    drop: { col: 0 }, goal: { row: 3, col: 6 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[5 * 7 + 2] = 'wall';
+      t[5 * 7 + 4] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 5, chute: 2, rampL: 1 /* decoy */ },
+  },
+
+  // ===== L31-L35: 8x7, 8-11 pieces, more walls =====
+  // L31: drop col 1 -> goal (7,5). Walls (3,3),(4,3) block direct. Path: (0,1)chute,(1,1)chute,(2,1)rampR, straight x3 to (2,5), rampR(2,5)W->S, chutes(3,5..6,5), goal(7,5).
+  {
+    name: 'Wall Wrap',
+    rows: 8, cols: 7,
+    drop: { col: 1 }, goal: { row: 7, col: 5 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[3 * 7 + 3] = 'wall';
+      t[4 * 7 + 3] = 'wall';
+      t[5 * 7 + 0] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 3, chute: 6, rampL: 1 /* decoy */ },
+  },
+  // L32: drop col 0 -> goal (5,5). rampR(0,0), 4 straights (0,1..0,4), rampR(0,5)W->S, chutes (1,5..4,5), goal(5,5). Walls (2,2),(3,3).
+  {
+    name: 'Side Route',
+    rows: 8, cols: 7,
+    drop: { col: 0 }, goal: { row: 5, col: 5 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[2 * 7 + 2] = 'wall';
+      t[3 * 7 + 3] = 'wall';
+      t[7 * 7 + 6] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 4, chute: 4, funnel: 1 /* decoy */ },
+  },
+  // L33: drop col 6 -> goal (4,0). rampL(0,6), 5 straights (0,5..1), rampL(0,0)E->S, chutes (1,0..3,0), goal(4,0).
+  {
+    name: 'Mirror March',
+    rows: 8, cols: 7,
+    drop: { col: 6 }, goal: { row: 4, col: 0 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[2 * 7 + 3] = 'wall';
+      t[3 * 7 + 3] = 'wall';
+      t[6 * 7 + 4] = 'wall';
+      return t;
+    })(),
+    tray: { rampL: 2, straight: 5, chute: 3, rampR: 1 /* decoy */ },
+  },
+  // L34: drop col 3 -> goal (7,3). Walls (2,3),(5,3) block straight chute. Detour right.
+  // (0,3)rampR N->E, (0,4)rampR W->S, chutes (1,4..5,4), rampL(6,4)N->W, rampL(6,3)E->S, goal(7,3).
+  {
+    name: 'Around The Stack',
+    rows: 8, cols: 7,
+    drop: { col: 3 }, goal: { row: 7, col: 3 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[2 * 7 + 3] = 'wall';
+      t[5 * 7 + 3] = 'wall';
+      t[4 * 7 + 1] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, rampL: 2, chute: 5, straight: 1 /* decoy */, funnel: 1 /* decoy */ },
+  },
+  // L35: drop col 0 -> goal (5,6). rampR(0,0), 5 straights (0,1..0,5), rampR(0,6)W->S, chutes (1,6..4,6), goal(5,6).
+  {
+    name: 'High Bridge',
+    rows: 8, cols: 7,
+    drop: { col: 0 }, goal: { row: 5, col: 6 },
+    tiles: (() => {
+      const t = emptyTiles(8, 7);
+      t[2 * 7 + 2] = 'wall';
+      t[4 * 7 + 4] = 'wall';
+      t[7 * 7 + 3] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 5, chute: 4, rampL: 1 /* decoy */ },
+  },
+
+  // ===== L36-L40: 9x7, 9-13 pieces, fixed pre-placed pieces =====
+  // L36: 9x7. Fixed rampR(0,0). Drop col 0 -> goal (8,6).
+  // Fixed rampR at (0,0) catches drop, exits E. Player adds: straight x5 (0,1..0,5), rampR(0,6) W->S, chutes (1,6..7,6), goal (8,6).
+  {
+    name: 'Welcome Ramp',
+    rows: 9, cols: 7,
+    drop: { col: 0 }, goal: { row: 8, col: 6 },
+    tiles: (() => {
+      const t = emptyTiles(9, 7);
+      t[0 * 7 + 0] = { fixed: 'rampR' };
+      t[4 * 7 + 3] = 'wall';
+      t[5 * 7 + 3] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 1, straight: 5, chute: 7, rampL: 1 /* decoy */, funnel: 1 /* decoy */ },
+  },
+  // L37: 9x7. Fixed chute at (3,3). Drop col 3 -> goal (8,5).
+  // (0,3)chute,(1,3)chute,(2,3)chute,(3,3)fixed chute,(4,3)rampR N->E, straight(4,4), rampR(4,5)W->S, chutes(5,5..7,5), goal(8,5).
+  {
+    name: 'Built In',
+    rows: 9, cols: 7,
+    drop: { col: 3 }, goal: { row: 8, col: 5 },
+    tiles: (() => {
+      const t = emptyTiles(9, 7);
+      t[3 * 7 + 3] = { fixed: 'chute' };
+      t[2 * 7 + 1] = 'wall';
+      t[5 * 7 + 6] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 1, chute: 6, rampL: 1 /* decoy */ },
+  },
+  // L38: 9x7. Fixed rampL at (3,5). Drop col 5 -> goal (8,0).
+  // (0,5)chute,(1,5)chute,(2,5)chute,(3,5)fixed rampL N->W, straight(3,4..3,1) x4, rampL(3,0)E->S, chutes(4,0..7,0), goal(8,0).
+  {
+    name: 'Long March',
+    rows: 9, cols: 7,
+    drop: { col: 5 }, goal: { row: 8, col: 0 },
+    tiles: (() => {
+      const t = emptyTiles(9, 7);
+      t[3 * 7 + 5] = { fixed: 'rampL' };
+      t[2 * 7 + 4] = 'wall';
+      t[6 * 7 + 3] = 'wall';
+      return t;
+    })(),
+    tray: { rampL: 1, straight: 4, chute: 7, rampR: 1 /* decoy */, funnel: 1 /* decoy */ },
+  },
+  // L39: 9x7. Fixed funnel at (4,3). Drop col 3 -> goal (8,6).
+  // (0,3)chute,(1,3)chute,(2,3)chute,(3,3)chute,(4,3)fixed funnel N->S,(5,3)rampR N->E, straight(5,4),(5,5), rampR(5,6)W->S, chutes(6,6),(7,6), goal(8,6).
+  {
+    name: 'Funnel Forward',
+    rows: 9, cols: 7,
+    drop: { col: 3 }, goal: { row: 8, col: 6 },
+    tiles: (() => {
+      const t = emptyTiles(9, 7);
+      t[4 * 7 + 3] = { fixed: 'funnel' };
+      t[2 * 7 + 5] = 'wall';
+      t[7 * 7 + 2] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 2, chute: 6, rampL: 1 /* decoy */ },
+  },
+  // L40: 9x7. Two fixed: rampR(0,0) and rampR(0,6). Drop col 0 -> goal (8,6).
+  // Fixed rampR(0,0) N->E, straights (0,1..0,5) x5, fixed rampR(0,6) W->S, chutes (1,6..7,6) x7, goal(8,6).
+  {
+    name: 'Bookends',
+    rows: 9, cols: 7,
+    drop: { col: 0 }, goal: { row: 8, col: 6 },
+    tiles: (() => {
+      const t = emptyTiles(9, 7);
+      t[0 * 7 + 0] = { fixed: 'rampR' };
+      t[0 * 7 + 6] = { fixed: 'rampR' };
+      t[4 * 7 + 3] = 'wall';
+      t[5 * 7 + 3] = 'wall';
+      t[6 * 7 + 3] = 'wall';
+      return t;
+    })(),
+    tray: { straight: 5, chute: 7, rampL: 2 /* decoy */, funnel: 1 /* decoy */ },
+  },
+
+  // ===== L41-L45: 9x8, 12-14 pieces, complex routing =====
+  // L41: 9x8. Drop col 1 -> goal (8,7). rampR(0,1), 5 straights (0,2..0,6), rampR(0,7)W->S, chutes (1,7..7,7) x7, goal(8,7).
+  {
+    name: 'Wide World',
+    rows: 9, cols: 8,
+    drop: { col: 1 }, goal: { row: 8, col: 7 },
+    tiles: (() => {
+      const t = emptyTiles(9, 8);
+      t[3 * 8 + 3] = 'wall';
+      t[4 * 8 + 3] = 'wall';
+      t[5 * 8 + 5] = 'wall';
+      t[6 * 8 + 5] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 5, chute: 7, rampL: 2 /* decoy */, funnel: 1 /* decoy */ },
+  },
+  // L42: 9x8. Drop col 0 -> goal (8,5). rampR(0,0), 4 straights (0,1..0,4), rampR(0,5)W->S, chutes (1,5..7,5) x7, goal(8,5).
+  {
+    name: 'Curved Cascade',
+    rows: 9, cols: 8,
+    drop: { col: 0 }, goal: { row: 8, col: 5 },
+    tiles: (() => {
+      const t = emptyTiles(9, 8);
+      t[2 * 8 + 2] = 'wall';
+      t[4 * 8 + 3] = 'wall';
+      t[6 * 8 + 4] = 'wall';
+      t[7 * 8 + 1] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 4, chute: 7, rampL: 1 /* decoy */, funnel: 2 /* decoy */ },
+  },
+  // L43: 9x8. DOUBLING BACK. Drop col 0 -> goal (4,2).
+  // (0,0)rampR, straight x5 (0,1..0,5), rampR(0,6)W->S, chute(1,6),(2,6), rampL(3,6)N->W, straight x3 (3,5),(3,4),(3,3), rampL(3,2)E->S, goal(4,2).
+  // Note: also (3,3) would step over a wall location -- ensure walls do not sit on path. Walls at (2,3),(2,4) — not on path.
+  {
+    name: 'U-Turn',
+    rows: 9, cols: 8,
+    drop: { col: 0 }, goal: { row: 4, col: 2 },
+    tiles: (() => {
+      const t = emptyTiles(9, 8);
+      t[2 * 8 + 3] = 'wall';
+      t[2 * 8 + 4] = 'wall';
+      t[7 * 8 + 4] = 'wall';
+      t[8 * 8 + 1] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, rampL: 2, straight: 8, chute: 2, funnel: 2 /* decoy */ },
+  },
+  // L44: 9x8. Fixed straight at (0,3). Drop col 0 -> goal (8,7).
+  // rampR(0,0), straight(0,1), straight(0,2), fixed straight(0,3), straight(0,4), straight(0,5), straight(0,6), rampR(0,7)W->S, chutes(1,7..7,7) x7, goal(8,7).
+  {
+    name: 'Pass Through',
+    rows: 9, cols: 8,
+    drop: { col: 0 }, goal: { row: 8, col: 7 },
+    tiles: (() => {
+      const t = emptyTiles(9, 8);
+      t[0 * 8 + 3] = { fixed: 'straight' };
+      t[3 * 8 + 3] = 'wall';
+      t[5 * 8 + 5] = 'wall';
+      t[6 * 8 + 2] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 5, chute: 7, rampL: 1 /* decoy */, funnel: 1 /* decoy */ },
+  },
+  // L45: 9x8. Fixed chute at (5,4). Drop col 0 -> goal (8,4).
+  // rampR(0,0), straight x3 (0,1..0,3), rampR(0,4)W->S, chutes (1,4),(2,4),(3,4),(4,4), fixed chute(5,4), chutes(6,4),(7,4), goal(8,4).
+  {
+    name: 'Locked-In Chute',
+    rows: 9, cols: 8,
+    drop: { col: 0 }, goal: { row: 8, col: 4 },
+    tiles: (() => {
+      const t = emptyTiles(9, 8);
+      t[5 * 8 + 4] = { fixed: 'chute' };
+      t[3 * 8 + 1] = 'wall';
+      t[3 * 8 + 2] = 'wall';
+      t[3 * 8 + 3] = 'wall';
+      t[7 * 8 + 2] = 'wall';
+      t[7 * 8 + 6] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 3, chute: 6, rampL: 2 /* decoy */, funnel: 1 /* decoy */ },
+  },
+
+  // ===== L46-L50: 10x8, ultimate set, 15+ pieces, decoys =====
+  // L46: 10x8. Drop col 0 -> goal (9,7). rampR(0,0), 6 straights (0,1..0,6), rampR(0,7)W->S, 8 chutes (1,7..8,7), goal(9,7).
+  {
+    name: 'Grand Cascade',
+    rows: 10, cols: 8,
+    drop: { col: 0 }, goal: { row: 9, col: 7 },
+    tiles: (() => {
+      const t = emptyTiles(10, 8);
+      t[4 * 8 + 3] = 'wall';
+      t[5 * 8 + 4] = 'wall';
+      t[7 * 8 + 2] = 'wall';
+      t[8 * 8 + 4] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, straight: 6, chute: 8, rampL: 3 /* decoy */, funnel: 2 /* decoy */ },
+  },
+  // L47: 10x8. BIG SNAKE/zig-zag. Drop col 0 -> goal (8,0).
+  // (0,0)rampR, straight x5 (0,1..0,5), rampR(0,6)W->S, chute(1,6),(2,6), rampL(3,6)N->W, straight x5 (3,5..3,1), rampL(3,0)E->S, chutes(4,0..7,0), goal(8,0).
+  {
+    name: 'Serpent',
+    rows: 10, cols: 8,
+    drop: { col: 0 }, goal: { row: 8, col: 0 },
+    tiles: (() => {
+      const t = emptyTiles(10, 8);
+      t[5 * 8 + 3] = 'wall';
+      t[6 * 8 + 5] = 'wall';
+      t[1 * 8 + 7] = 'wall';
+      t[9 * 8 + 4] = 'wall';
+      t[9 * 8 + 7] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, rampL: 2, straight: 10, chute: 6, funnel: 2 /* decoy */ },
+  },
+  // L48: 10x8. Fixed rampR(0,3), fixed rampL(5,3). Drop col 3 -> goal (9,3).
+  // (0,3)fixed rampR N->E, straight(0,4),(0,5),(0,6), rampR(0,7)W->S, chute(1,7),(2,7),(3,7),(4,7), rampL(5,7)N->W, straight(5,6),(5,5),(5,4), fixed rampL(5,3)E->S, chute(6,3),(7,3),(8,3), goal(9,3).
+  {
+    name: 'Switchback Special',
+    rows: 10, cols: 8,
+    drop: { col: 3 }, goal: { row: 9, col: 3 },
+    tiles: (() => {
+      const t = emptyTiles(10, 8);
+      t[0 * 8 + 3] = { fixed: 'rampR' };
+      t[5 * 8 + 3] = { fixed: 'rampL' };
+      t[2 * 8 + 1] = 'wall';
+      t[2 * 8 + 5] = 'wall';
+      t[7 * 8 + 1] = 'wall';
+      t[7 * 8 + 5] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 1, rampL: 1, straight: 6, chute: 7, funnel: 2 /* decoy */ },
+  },
+  // L49: 10x8. SPIRAL. Drop col 0 -> goal (5,4).
+  // (0,0)rampR, straight x6 (0,1..0,6), rampR(0,7)W->S, chute(1,7),(2,7), rampL(3,7)N->W, straight x5 (3,6..3,2), rampL(3,1)E->S, chute(4,1), rampR(5,1)N->E, straight(5,2),(5,3), goal(5,4) from W.
+  {
+    name: 'Inward Spiral',
+    rows: 10, cols: 8,
+    drop: { col: 0 }, goal: { row: 5, col: 4 },
+    tiles: (() => {
+      const t = emptyTiles(10, 8);
+      t[7 * 8 + 2] = 'wall';
+      t[7 * 8 + 6] = 'wall';
+      t[8 * 8 + 4] = 'wall';
+      t[9 * 8 + 0] = 'wall';
+      t[9 * 8 + 7] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 2, rampL: 2, straight: 13, chute: 3, funnel: 3 /* decoy */ },
+  },
+  // L50: 10x8. ULTIMATE. Fixed straight(2,3), fixed chute(4,1). Drop col 0 -> goal (9,7).
+  // (0,0)rampR, straight x4 (0,1..0,4), rampR(0,5)W->S, chute(1,5), rampL(2,5)N->W, straight(2,4), fixed straight(2,3) E->W, straight(2,2), rampL(2,1)E->S, chute(3,1), fixed chute(4,1), rampR(5,1)N->E, straight x4 (5,2..5,5), rampR(5,6)W->S, chute(6,6),(7,6),(8,6), rampR(9,6)N->E, goal(9,7) from W.
+  {
+    name: 'Master Engineer',
+    rows: 10, cols: 8,
+    drop: { col: 0 }, goal: { row: 9, col: 7 },
+    tiles: (() => {
+      const t = emptyTiles(10, 8);
+      t[2 * 8 + 3] = { fixed: 'straight' };
+      t[4 * 8 + 1] = { fixed: 'chute' };
+      t[3 * 8 + 6] = 'wall';
+      t[8 * 8 + 3] = 'wall';
+      t[0 * 8 + 7] = 'wall';
+      t[6 * 8 + 0] = 'wall';
+      t[7 * 8 + 7] = 'wall';
+      return t;
+    })(),
+    tray: { rampR: 5, rampL: 2, straight: 10, chute: 5, funnel: 3 /* decoy */ },
+  },
 ];
 
 // ----- SVG helpers -----

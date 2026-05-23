@@ -399,6 +399,453 @@ function makeLevels() {
     L.push({ name: 'Workshop', width: 680, height: 460, crank: { x: 30, y: 200 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'S', 'L'] });
   }
 
+  // ----- L26-L30: 6-7 gears, single driven, mid-complexity -----
+  // L26 — 6 mediums vertical chain driving a lift.
+  {
+    const slots = chainSlots(200, 50, 0, 1, ['M', 'M', 'M', 'M', 'M', 'M']);
+    const last = slots[slots.length-1];
+    const driven = { type: 'lift', x: last.x + GEAR_DEFS.M.r + 30, y: last.y };
+    L.push({ name: 'Tall Order', width: 460, height: 500, crank: { x: 200, y: 10 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L27 — 7 small gears in a long row.
+  {
+    const slots = chainSlots(80, 150, 1, 0, ['S', 'S', 'S', 'S', 'S', 'S', 'S']);
+    const last = slots[slots.length-1];
+    const driven = { type: 'flag', x: last.x + GEAR_DEFS.S.r + 30, y: 150 };
+    L.push({ name: 'Tiny Train', width: 460, height: 300, crank: { x: 30, y: 150 }, slots, driven, trayGears: ['S', 'S', 'S', 'S', 'S', 'S', 'S', 'M'] });
+  }
+  // L28 — 7 mixed S/M/L wave.
+  {
+    const slots = chainSlots(80, 150, 1, 0, ['M', 'L', 'S', 'M', 'L', 'S', 'M']);
+    const last = slots[slots.length-1];
+    const driven = { type: 'waterwheel', x: last.x + GEAR_DEFS.M.r + 60, y: 150 };
+    L.push({ name: 'Wave Drive', width: 640, height: 320, crank: { x: 30, y: 150 }, slots, driven, trayGears: ['M', 'L', 'S', 'M', 'L', 'S', 'M', 'S'] });
+  }
+  // L29 — diagonal 6 large gears.
+  {
+    const ux = Math.cos(Math.PI / 8), uy = Math.sin(Math.PI / 8);
+    const slots = chainSlots(110, 90, ux, uy, ['L', 'L', 'L', 'L', 'L', 'L']);
+    const last = slots[slots.length-1];
+    const driven = { type: 'drawbridge', x: last.x + GEAR_DEFS.L.r + 10, y: last.y };
+    L.push({ name: 'Giant Slope', width: 680, height: 360, crank: { x: 40, y: 90 }, slots, driven, trayGears: ['L', 'L', 'L', 'L', 'L', 'L', 'M'] });
+  }
+  // L30 — U-shape: down, right, up.
+  {
+    const seg1 = chainSlots(80, 70, 0, 1, ['M', 'M', 'M']);
+    const last1 = seg1[seg1.length-1];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const seg2 = chainSlots(last1.x + d, last1.y, 1, 0, ['M', 'M']);
+    const last2 = seg2[seg2.length-1];
+    const seg3 = chainSlots(last2.x + d, last2.y, 0, -1, ['M', 'M']);
+    const slots = [...seg1, ...seg2, ...seg3].map((s, i) => ({ ...s, id: 'g'+i }));
+    const last = slots[slots.length-1];
+    const driven = { type: 'windmill', x: last.x + GEAR_DEFS.M.r + 30, y: last.y };
+    L.push({ name: 'U-Turn', width: 440, height: 360, crank: { x: 80, y: 20 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+
+  // ----- L31-L35: 7-8 gears, branching chains (Y/T splits) -----
+  // L31 — Y-split early: trunk of 3, then two branches each 2 gears, two driven.
+  {
+    const trunk = chainSlots(80, 180, 1, 0, ['M', 'M', 'M']);
+    const fork = trunk[trunk.length-1];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    // Up-right diagonal branch
+    const ux1 = Math.cos(-Math.PI/4), uy1 = Math.sin(-Math.PI/4);
+    const branchUp = chainSlots(fork.x + ux1*d, fork.y + uy1*d, ux1, uy1, ['M', 'M']);
+    // Down-right diagonal branch
+    const ux2 = Math.cos(Math.PI/4), uy2 = Math.sin(Math.PI/4);
+    const branchDn = chainSlots(fork.x + ux2*d, fork.y + uy2*d, ux2, uy2, ['M', 'M']);
+    const slots = [...trunk, ...branchUp, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu = branchUp[branchUp.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'flag', x: lu.x + GEAR_DEFS.M.r + 24, y: lu.y },
+      { type: 'waterwheel', x: ld.x + GEAR_DEFS.M.r + 50, y: ld.y },
+    ];
+    L.push({ name: 'Fork Road', width: 560, height: 420, crank: { x: 30, y: 180 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L32 — T-split with three driven: trunk continues past fork.
+  {
+    const trunk = chainSlots(60, 220, 1, 0, ['M', 'M', 'M', 'M', 'M']);
+    const fork = trunk[2]; // middle gear
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branchUp = chainSlots(fork.x, fork.y - d, 0, -1, ['M', 'M']);
+    const branchDn = chainSlots(fork.x, fork.y + d, 0, 1, ['M']);
+    const slots = [...trunk, ...branchUp, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu = branchUp[branchUp.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const lt = trunk[trunk.length-1];
+    const driven = [
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+      { type: 'drawbridge', x: ld.x + GEAR_DEFS.M.r + 20, y: ld.y },
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+    ];
+    L.push({ name: 'Crossroads', width: 580, height: 420, crank: { x: 30, y: 220 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L33 — Y-split mid: 7 gears, two driven.
+  {
+    const trunk = chainSlots(70, 180, 1, 0, ['L', 'M', 'M']);
+    const fork = trunk[trunk.length-1];
+    const dMM = GEAR_DEFS.M.r + GEAR_DEFS.M.r - 4;
+    const branchUp = chainSlots(fork.x, fork.y - dMM, 0, -1, ['M', 'M']);
+    const branchDn = chainSlots(fork.x, fork.y + dMM, 0, 1, ['M', 'M']);
+    const slots = [...trunk, ...branchUp, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu = branchUp[branchUp.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'windmill', x: lu.x + GEAR_DEFS.M.r + 30, y: lu.y },
+      { type: 'lift', x: ld.x + GEAR_DEFS.M.r + 30, y: ld.y },
+    ];
+    L.push({ name: 'Two Tales', width: 460, height: 460, crank: { x: 25, y: 180 }, slots, driven, trayGears: ['L', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L34 — Branch from middle of trunk.
+  {
+    const trunk = chainSlots(70, 200, 1, 0, ['M', 'M', 'M', 'M', 'M']);
+    const fork = trunk[1]; // second gear branches
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branchUp = chainSlots(fork.x, fork.y - d, 0, -1, ['M', 'M', 'M']);
+    const slots = [...trunk, ...branchUp].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const lu = branchUp[branchUp.length-1];
+    const driven = [
+      { type: 'waterwheel', x: lt.x + GEAR_DEFS.M.r + 60, y: lt.y },
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+    ];
+    L.push({ name: 'Side Track', width: 560, height: 440, crank: { x: 25, y: 200 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L35 — Y at start: branch immediately from gear 1.
+  {
+    const trunk = chainSlots(70, 200, 1, 0, ['M', 'M', 'M', 'M']);
+    const fork = trunk[0];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branchDn = chainSlots(fork.x, fork.y + d, 0, 1, ['M', 'M', 'M']);
+    const slots = [...trunk, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'drawbridge', x: ld.x + GEAR_DEFS.M.r + 20, y: ld.y },
+    ];
+    L.push({ name: 'Early Split', width: 540, height: 460, crank: { x: 20, y: 200 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L'] });
+  }
+
+  // ----- L36-L40: 8-10 gears, 2-3 driven objects -----
+  // L36 — T with three driven, larger.
+  {
+    const trunk = chainSlots(70, 250, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M']);
+    const fork = trunk[2];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branchUp = chainSlots(fork.x, fork.y - d, 0, -1, ['M', 'M', 'M']);
+    const branchDn = chainSlots(fork.x, fork.y + d, 0, 1, ['M']);
+    const slots = [...trunk, ...branchUp, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const lu = branchUp[branchUp.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+      { type: 'drawbridge', x: ld.x + GEAR_DEFS.M.r + 20, y: ld.y },
+    ];
+    L.push({ name: 'Triple Threat', width: 660, height: 500, crank: { x: 20, y: 250 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L37 — Cross / X with 4 driven at trunk-end + each branch tip... but X-split with 4 driven is tough with one fork node.
+  // Use a 4-direction split: a center M with branches up, right, down, and trunk from left.
+  {
+    const cx = 280, cy = 240;
+    const d = GEAR_DEFS.M.r*2 - 4;
+    // Left trunk (from crank): 3 gears ending at center
+    const leftTrunk = chainSlots(cx - 3*d, cy, 1, 0, ['M', 'M', 'M', 'M']); // 4th is center
+    const center = leftTrunk[leftTrunk.length-1];
+    const branchUp = chainSlots(center.x, center.y - d, 0, -1, ['M', 'M']);
+    const branchRt = chainSlots(center.x + d, center.y, 1, 0, ['M', 'M']);
+    const branchDn = chainSlots(center.x, center.y + d, 0, 1, ['M', 'M']);
+    const slots = [...leftTrunk, ...branchUp, ...branchRt, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu = branchUp[branchUp.length-1];
+    const lr = branchRt[branchRt.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+      { type: 'windmill', x: lr.x + GEAR_DEFS.M.r + 30, y: lr.y },
+      { type: 'drawbridge', x: ld.x + GEAR_DEFS.M.r + 20, y: ld.y },
+    ];
+    L.push({ name: 'Hub Power', width: 600, height: 500, crank: { x: cx - 3*d - GEAR_DEFS.M.r - 20, y: cy }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L'] });
+  }
+  // L38 — long horizontal with two branches at different points.
+  {
+    const trunk = chainSlots(60, 200, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[1];
+    const fork2 = trunk[4];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branch1 = chainSlots(fork1.x, fork1.y - d, 0, -1, ['M', 'M']);
+    const branch2 = chainSlots(fork2.x, fork2.y - d, 0, -1, ['M', 'M']);
+    const slots = [...trunk, ...branch1, ...branch2].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = branch1[branch1.length-1];
+    const l2 = branch2[branch2.length-1];
+    const driven = [
+      { type: 'waterwheel', x: lt.x + GEAR_DEFS.M.r + 60, y: lt.y },
+      { type: 'flag', x: l1.x, y: l1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'windmill', x: l2.x, y: l2.y - GEAR_DEFS.M.r - 40 },
+    ];
+    L.push({ name: 'Twin Towers', width: 600, height: 400, crank: { x: 20, y: 200 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S'] });
+  }
+  // L39 — 9 mixed gears, T-split, two driven.
+  {
+    const trunk = chainSlots(60, 200, 1, 0, ['L', 'M', 'M', 'M', 'M', 'L']);
+    const fork = trunk[3];
+    const dMM = GEAR_DEFS.M.r*2 - 4;
+    const branchUp = chainSlots(fork.x, fork.y - dMM, 0, -1, ['M', 'M', 'M']);
+    const slots = [...trunk, ...branchUp].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const lu = branchUp[branchUp.length-1];
+    const driven = [
+      { type: 'waterwheel', x: lt.x + GEAR_DEFS.L.r + 60, y: lt.y },
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+    ];
+    L.push({ name: 'Heavy Branch', width: 660, height: 460, crank: { x: 20, y: 200 }, slots, driven, trayGears: ['L', 'M', 'M', 'M', 'M', 'L', 'M', 'M', 'M', 'S', 'S'] });
+  }
+  // L40 — Multi-driven: trunk + two perpendicular branches, with decoys.
+  {
+    const trunk = chainSlots(60, 230, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[2];
+    const fork2 = trunk[5];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branch1 = chainSlots(fork1.x, fork1.y + d, 0, 1, ['M', 'M']);
+    const branch2 = chainSlots(fork2.x, fork2.y - d, 0, -1, ['M']);
+    const slots = [...trunk, ...branch1, ...branch2].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = branch1[branch1.length-1];
+    const l2 = branch2[branch2.length-1];
+    const driven = [
+      { type: 'lift', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'drawbridge', x: l1.x + GEAR_DEFS.M.r + 20, y: l1.y },
+      { type: 'flag', x: l2.x, y: l2.y - GEAR_DEFS.M.r - 40 },
+    ];
+    L.push({ name: 'Three Jobs', width: 680, height: 440, crank: { x: 20, y: 230 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'S', 'L'] });
+  }
+
+  // ----- L41-L45: 10+ gears, complex junctions, 3+ driven -----
+  // L41 — 10 gears, T-split, three driven.
+  {
+    const trunk = chainSlots(60, 240, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork = trunk[3];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branchUp = chainSlots(fork.x, fork.y - d, 0, -1, ['M', 'M']);
+    const branchDn = chainSlots(fork.x, fork.y + d, 0, 1, ['M']);
+    const slots = [...trunk, ...branchUp, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const lu = branchUp[branchUp.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+      { type: 'waterwheel', x: ld.x + GEAR_DEFS.M.r + 50, y: ld.y },
+    ];
+    L.push({ name: 'Big Factory', width: 700, height: 500, crank: { x: 20, y: 240 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L', 'S'] });
+  }
+  // L42 — 11 gears, two T-splits.
+  {
+    const trunk = chainSlots(60, 240, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[2];
+    const fork2 = trunk[5];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const branch1U = chainSlots(fork1.x, fork1.y - d, 0, -1, ['M', 'M']);
+    const branch2D = chainSlots(fork2.x, fork2.y + d, 0, 1, ['M', 'M']);
+    const slots = [...trunk, ...branch1U, ...branch2D].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = branch1U[branch1U.length-1];
+    const l2 = branch2D[branch2D.length-1];
+    const driven = [
+      { type: 'lift', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: l1.x, y: l1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'drawbridge', x: l2.x + GEAR_DEFS.M.r + 20, y: l2.y },
+    ];
+    L.push({ name: 'Double Tap', width: 700, height: 500, crank: { x: 20, y: 240 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L'] });
+  }
+  // L43 — Cross junction X-shape with 3 driven (trunk + up + down).
+  {
+    const cx = 280, cy = 260;
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const leftTrunk = chainSlots(cx - 4*d, cy, 1, 0, ['M', 'M', 'M', 'M', 'M']); // center is index 4
+    const center = leftTrunk[leftTrunk.length-1];
+    const branchUp = chainSlots(center.x, center.y - d, 0, -1, ['M', 'M', 'M']);
+    const branchRt = chainSlots(center.x + d, center.y, 1, 0, ['M', 'M']);
+    const branchDn = chainSlots(center.x, center.y + d, 0, 1, ['M', 'M']);
+    const slots = [...leftTrunk, ...branchUp, ...branchRt, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu = branchUp[branchUp.length-1];
+    const lr = branchRt[branchRt.length-1];
+    const ld = branchDn[branchDn.length-1];
+    const driven = [
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+      { type: 'windmill', x: lr.x + GEAR_DEFS.M.r + 30, y: lr.y },
+      { type: 'drawbridge', x: ld.x + GEAR_DEFS.M.r + 20, y: ld.y },
+    ];
+    L.push({ name: 'Spider Hub', width: 600, height: 560, crank: { x: cx - 4*d - GEAR_DEFS.M.r - 20, y: cy }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L'] });
+  }
+  // L44 — 11 gears, three branches off long trunk, 4 driven.
+  {
+    const trunk = chainSlots(50, 260, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[1];
+    const fork2 = trunk[4];
+    const fork3 = trunk[6];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const b1 = chainSlots(fork1.x, fork1.y - d, 0, -1, ['M']);
+    const b2 = chainSlots(fork2.x, fork2.y + d, 0, 1, ['M']);
+    const b3 = chainSlots(fork3.x, fork3.y - d, 0, -1, ['M']);
+    const slots = [...trunk, ...b1, ...b2, ...b3].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = b1[b1.length-1];
+    const l2 = b2[b2.length-1];
+    const l3 = b3[b3.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: l1.x, y: l1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'drawbridge', x: l2.x + GEAR_DEFS.M.r + 20, y: l2.y },
+      { type: 'lift', x: l3.x, y: l3.y - GEAR_DEFS.M.r - 50 },
+    ];
+    L.push({ name: 'Power Line', width: 720, height: 500, crank: { x: 15, y: 260 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L'] });
+  }
+  // L45 — Snake: U-turn long chain with branch driving 3 driven total.
+  {
+    const seg1 = chainSlots(80, 90, 1, 0, ['M', 'M', 'M', 'M']);
+    const last1 = seg1[seg1.length-1];
+    const dMM = GEAR_DEFS.M.r*2 - 4;
+    const seg2 = chainSlots(last1.x, last1.y + dMM, 0, 1, ['M', 'M']);
+    const last2 = seg2[seg2.length-1];
+    const seg3 = chainSlots(last2.x - dMM, last2.y, -1, 0, ['M', 'M', 'M']);
+    const last3 = seg3[seg3.length-1];
+    const seg4 = chainSlots(last3.x, last3.y + dMM, 0, 1, ['M', 'M']);
+    const slots = [...seg1, ...seg2, ...seg3, ...seg4].map((s, i) => ({ ...s, id: 'g'+i }));
+    const last = seg4[seg4.length-1];
+    const driven = { type: 'waterwheel', x: last.x, y: last.y + GEAR_DEFS.M.r + 50 };
+    L.push({ name: 'Serpent', width: 560, height: 440, crank: { x: 30, y: 90 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L'] });
+  }
+
+  // ----- L46-L50: ultimate set — 12+ gears, 4-5 driven, decoys -----
+  // L46 — 12 gears, T-split, 4 driven.
+  {
+    const trunk = chainSlots(50, 260, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[2];
+    const fork2 = trunk[4];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const b1U = chainSlots(fork1.x, fork1.y - d, 0, -1, ['M', 'M']);
+    const b1D = chainSlots(fork1.x, fork1.y + d, 0, 1, ['M']);
+    const b2U = chainSlots(fork2.x, fork2.y - d, 0, -1, ['M', 'M']);
+    const slots = [...trunk, ...b1U, ...b1D, ...b2U].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const lu1 = b1U[b1U.length-1];
+    const ld1 = b1D[b1D.length-1];
+    const lu2 = b2U[b2U.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: lu1.x, y: lu1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'drawbridge', x: ld1.x + GEAR_DEFS.M.r + 20, y: ld1.y },
+      { type: 'waterwheel', x: lu2.x, y: lu2.y - GEAR_DEFS.M.r - 50 },
+    ];
+    L.push({ name: 'Quad Drive', width: 720, height: 540, crank: { x: 15, y: 260 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'S', 'L'] });
+  }
+  // L47 — 13 gears, X-junction, 4 driven.
+  {
+    const cx = 300, cy = 280;
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const leftTrunk = chainSlots(cx - 4*d, cy, 1, 0, ['M', 'M', 'M', 'M', 'M']); // center is 4
+    const center = leftTrunk[leftTrunk.length-1];
+    const branchUp = chainSlots(center.x, center.y - d, 0, -1, ['M', 'M']);
+    const branchRt = chainSlots(center.x + d, center.y, 1, 0, ['M', 'M', 'M']);
+    const branchDn = chainSlots(center.x, center.y + d, 0, 1, ['M', 'M', 'M']);
+    const slots = [...leftTrunk, ...branchUp, ...branchRt, ...branchDn].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu = branchUp[branchUp.length-1];
+    const lr = branchRt[branchRt.length-1];
+    const ld = branchDn[branchDn.length-1];
+    // 4 driven: one driven by trunk-end before center... but center IS trunk end. Use 3 branches + driven from one branch midpoint? Simpler: 3 driven on branch tips + waterwheel below branchDn (i.e., 3 outputs only).
+    // To hit 4 driven, add an extra branch.
+    // Easier: keep 3 driven for X, add another short branch.
+    const branchUp2 = chainSlots(leftTrunk[2].x, leftTrunk[2].y - d, 0, -1, ['M']);
+    const allSlots = [...leftTrunk, ...branchUp, ...branchRt, ...branchDn, ...branchUp2].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lu2 = branchUp2[branchUp2.length-1];
+    const driven = [
+      { type: 'flag', x: lu.x, y: lu.y - GEAR_DEFS.M.r - 40 },
+      { type: 'windmill', x: lr.x + GEAR_DEFS.M.r + 30, y: lr.y },
+      { type: 'drawbridge', x: ld.x + GEAR_DEFS.M.r + 20, y: ld.y },
+      { type: 'lift', x: lu2.x, y: lu2.y - GEAR_DEFS.M.r - 50 },
+    ];
+    L.push({ name: 'Star Hub', width: 640, height: 600, crank: { x: cx - 4*d - GEAR_DEFS.M.r - 20, y: cy }, slots: allSlots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'L', 'S'] });
+  }
+  // L48 — 14 gears, mixed sizes, 4 driven.
+  {
+    const trunk = chainSlots(40, 280, 1, 0, ['M', 'M', 'L', 'M', 'M', 'L', 'M', 'M']);
+    const fork1 = trunk[1];
+    const fork2 = trunk[6];
+    const dMM = GEAR_DEFS.M.r*2 - 4;
+    const b1 = chainSlots(fork1.x, fork1.y - dMM, 0, -1, ['M', 'M']);
+    const b2U = chainSlots(fork2.x, fork2.y - dMM, 0, -1, ['M', 'M']);
+    const b2D = chainSlots(fork2.x, fork2.y + dMM, 0, 1, ['M', 'M']);
+    const slots = [...trunk, ...b1, ...b2U, ...b2D].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = b1[b1.length-1];
+    const l2u = b2U[b2U.length-1];
+    const l2d = b2D[b2D.length-1];
+    const driven = [
+      { type: 'waterwheel', x: lt.x + GEAR_DEFS.M.r + 60, y: lt.y },
+      { type: 'flag', x: l1.x, y: l1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'windmill', x: l2u.x, y: l2u.y - GEAR_DEFS.M.r - 40 },
+      { type: 'drawbridge', x: l2d.x + GEAR_DEFS.M.r + 20, y: l2d.y },
+    ];
+    L.push({ name: 'Heavy Works', width: 760, height: 560, crank: { x: 15, y: 280 }, slots, driven, trayGears: ['M', 'M', 'L', 'M', 'M', 'L', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'S', 'L'] });
+  }
+  // L49 — 15 gears, multi-branch with 5 driven.
+  {
+    const trunk = chainSlots(40, 280, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[1];
+    const fork2 = trunk[4];
+    const fork3 = trunk[6];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const b1 = chainSlots(fork1.x, fork1.y - d, 0, -1, ['M', 'M']);
+    const b2U = chainSlots(fork2.x, fork2.y - d, 0, -1, ['M', 'M']);
+    const b2D = chainSlots(fork2.x, fork2.y + d, 0, 1, ['M']);
+    const b3 = chainSlots(fork3.x, fork3.y + d, 0, 1, ['M', 'M']);
+    const slots = [...trunk, ...b1, ...b2U, ...b2D, ...b3].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = b1[b1.length-1];
+    const l2u = b2U[b2U.length-1];
+    const l2d = b2D[b2D.length-1];
+    const l3 = b3[b3.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: l1.x, y: l1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'waterwheel', x: l2u.x, y: l2u.y - GEAR_DEFS.M.r - 50 },
+      { type: 'drawbridge', x: l2d.x + GEAR_DEFS.M.r + 20, y: l2d.y },
+      { type: 'lift', x: l3.x, y: l3.y + GEAR_DEFS.M.r + 40 },
+    ];
+    L.push({ name: 'Power Plant', width: 780, height: 560, crank: { x: 15, y: 280 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'S', 'L', 'S'] });
+  }
+  // L50 — Grand finale: 16 gears, multi-junction, 5 driven, decoys.
+  {
+    const trunk = chainSlots(40, 300, 1, 0, ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M']);
+    const fork1 = trunk[1];
+    const fork2 = trunk[4];
+    const fork3 = trunk[7];
+    const d = GEAR_DEFS.M.r*2 - 4;
+    const b1U = chainSlots(fork1.x, fork1.y - d, 0, -1, ['M', 'M']);
+    const b2U = chainSlots(fork2.x, fork2.y - d, 0, -1, ['M', 'M']);
+    const b2D = chainSlots(fork2.x, fork2.y + d, 0, 1, ['M']);
+    const b3D = chainSlots(fork3.x, fork3.y + d, 0, 1, ['M', 'M']);
+    const slots = [...trunk, ...b1U, ...b2U, ...b2D, ...b3D].map((s, i) => ({ ...s, id: 'g'+i }));
+    const lt = trunk[trunk.length-1];
+    const l1 = b1U[b1U.length-1];
+    const l2u = b2U[b2U.length-1];
+    const l2d = b2D[b2D.length-1];
+    const l3 = b3D[b3D.length-1];
+    const driven = [
+      { type: 'windmill', x: lt.x + GEAR_DEFS.M.r + 30, y: lt.y },
+      { type: 'flag', x: l1.x, y: l1.y - GEAR_DEFS.M.r - 40 },
+      { type: 'waterwheel', x: l2u.x, y: l2u.y - GEAR_DEFS.M.r - 50 },
+      { type: 'drawbridge', x: l2d.x + GEAR_DEFS.M.r + 20, y: l2d.y },
+      { type: 'lift', x: l3.x, y: l3.y + GEAR_DEFS.M.r + 40 },
+    ];
+    L.push({ name: 'Master Engine', width: 820, height: 600, crank: { x: 10, y: 300 }, slots, driven, trayGears: ['M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'S', 'S', 'S', 'L', 'L'] });
+  }
+
   return L;
 }
 

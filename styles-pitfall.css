@@ -1,0 +1,231 @@
+/* ===== Pitfall mechanic ===== */
+
+.pitfall-game {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.pitfall-stage {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, #88c8e8 0%, #b8e0c8 55%, #6ea850 56%, #4a7c3a 70%, #5b3a1c 80%, #3a2410 100%);
+  border-radius: 14px;
+  border: 3px solid rgba(0, 0, 0, 0.35);
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.25),
+    0 8px 22px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+/* The world container — translated as the camera scrolls */
+.pf-world {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Canopy strip at top */
+.pf-canopy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background:
+    radial-gradient(ellipse at 10% 80%, #2f6b2a 0%, transparent 60%),
+    radial-gradient(ellipse at 35% 70%, #3a8030 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 85%, #2a5e25 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 75%, #3a8030 0%, transparent 60%),
+    linear-gradient(180deg, #1f4f1c 0%, #2f6b2a 100%);
+  border-bottom: 3px solid #1a3f17;
+  pointer-events: none;
+}
+
+/* Ground line (drawn behind hazards) */
+.pf-ground {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 20%;
+  background:
+    linear-gradient(180deg, #6b3e1a 0%, #5b3216 40%, #3a2410 100%);
+  border-top: 4px solid #4a2a12;
+  pointer-events: none;
+}
+.pf-ground::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  background: linear-gradient(180deg, #7a8a3a 0%, #5a6a2a 100%);
+}
+
+/* Tree trunks scattered in background (CSS pseudo "parallax" by being inside world) */
+.pf-trunk {
+  position: absolute;
+  width: 40px;
+  background: linear-gradient(90deg, #4a2a14 0%, #6a3a1f 50%, #4a2a14 100%);
+  border-left: 2px solid #2a1808;
+  border-right: 2px solid #2a1808;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Player */
+.pf-player {
+  position: absolute;
+  width: 48px;
+  height: 64px;
+  pointer-events: none;
+  will-change: transform;
+  z-index: 5;
+}
+
+/* Hazards */
+.pf-hazard {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Pit overlay (drawn into the ground) */
+.pf-pit {
+  position: absolute;
+  background: linear-gradient(180deg, #000 0%, #1a0e08 100%);
+  border-top: 3px dashed #2a1a10;
+  pointer-events: none;
+  z-index: 2;
+}
+.pf-pit::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px;
+  height: 8px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%, transparent 4px,
+      #3a2410 4px, #3a2410 12px,
+      transparent 12px, transparent 24px,
+      #3a2410 24px, #3a2410 36px,
+      transparent 36px);
+}
+
+/* Vine */
+.pf-vine {
+  position: absolute;
+  width: 6px;
+  background: linear-gradient(180deg, #6a4a20 0%, #4a3010 100%);
+  border-radius: 3px;
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 3;
+}
+.pf-vine::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 26px;
+  height: 18px;
+  background: radial-gradient(circle at 30% 50%, #4a8a30 0%, #2a5e20 80%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+.pf-vine::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -6px;
+  width: 18px;
+  height: 12px;
+  background: radial-gradient(circle, #5a9e3a 0%, #3a7020 80%);
+  border-radius: 50%;
+}
+
+/* Goal flag + chest */
+.pf-goal {
+  position: absolute;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Win overlay (shared style with other mechanics) */
+.pitfall-game .star-burst {
+  position: absolute;
+  font-size: 32px;
+  pointer-events: none;
+  animation: pf-star-fly 1.4s ease-out forwards;
+  z-index: 50;
+}
+@keyframes pf-star-fly {
+  0%   { transform: translate(0, 0) scale(0.4); opacity: 1; }
+  100% { transform: var(--end) scale(1.4); opacity: 0; }
+}
+
+/* Touch hint (faint shimmer to suggest "tap anywhere") */
+.pf-touch-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.0;
+  z-index: 8;
+  font-size: 80px;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  animation: pf-hint-pulse 1.8s ease-in-out 0.3s 2;
+}
+@keyframes pf-hint-pulse {
+  0%, 100% { opacity: 0; transform: scale(0.9); }
+  50%      { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* Level name banner */
+.pf-banner {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  z-index: 9;
+  pointer-events: none;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+/* Death flash */
+.pf-death-flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 60, 40, 0.55);
+  pointer-events: none;
+  z-index: 20;
+  animation: pf-flash 0.6s ease-out forwards;
+}
+@keyframes pf-flash {
+  0%   { opacity: 0.9; }
+  100% { opacity: 0; }
+}

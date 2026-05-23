@@ -644,6 +644,357 @@ export const BRIDGE_LEVELS = [
     tray: { plank: 8, longPlank: 2, pillar3: 4, pillar2: 3, pillar1: 2, stone: 3 },
     vehicle: 'rocket',
   }),
+
+  // ---- L26-L30: wider gaps (10-12), multiple pillars needed ----
+  makeLevel({
+    name: 'Twin Towers',
+    build: {
+      cols: 14, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 6,
+      obstacles: [{ r: 5, c: 5 }, { r: 5, c: 9 }],
+    },
+    // 10-cell gap; 5 planks exactly (2*5=10)
+    chasm: { kind: 'water', topRow: 4, bottomRow: 6 },
+    tray: { plank: 5, pillar2: 3, pillar1: 2 },
+    vehicle: 'walker',
+  }),
+  makeLevel({
+    name: 'Bridge of Tiles',
+    build: {
+      cols: 14, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 6,
+    },
+    // 10-cell gap; 2+2+3+3=10
+    chasm: { kind: 'water', topRow: 4, bottomRow: 6 },
+    tray: { plank: 3, longPlank: 2, pillar2: 3, pillar1: 2 },
+    vehicle: 'cart',
+  }),
+  makeLevel({
+    name: 'Eleven Steps',
+    build: {
+      cols: 15, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 6,
+      obstacles: [{ r: 5, c: 5 }, { r: 5, c: 9 }],
+    },
+    // 11-cell gap; 2+2+2+3+1+1=11
+    chasm: { kind: 'lava', topRow: 4, bottomRow: 6 },
+    tray: { plank: 4, longPlank: 1, stone: 2, pillar2: 3, pillar1: 2 },
+    vehicle: 'horse',
+  }),
+  makeLevel({
+    name: 'River Run',
+    build: {
+      cols: 16, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 6,
+    },
+    // 12-cell gap; 3*4=12
+    chasm: { kind: 'water', topRow: 4, bottomRow: 6 },
+    tray: { plank: 3, longPlank: 4, pillar2: 3, pillar1: 2 },
+    vehicle: 'fireTruck',
+  }),
+  makeLevel({
+    name: 'Twin Pillars',
+    build: {
+      cols: 16, rows: 7, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 6,
+      obstacles: [{ r: 5, c: 4 }, { r: 5, c: 11 }],
+    },
+    // 12-cell gap; 3+3+3+3=12 (4 longPlanks)
+    chasm: { kind: 'canyon', topRow: 4, bottomRow: 6 },
+    tray: { longPlank: 4, plank: 2, pillar2: 4, pillar1: 2 },
+    vehicle: 'tank',
+  }),
+
+  // ---- L31-L35: gap 12-14, varied cliff heights, multiple obstacles ----
+  makeLevel({
+    name: 'High Side Low Side',
+    build: {
+      cols: 16, rows: 8, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, leftCliffTopRow: 2, rightCliffTopRow: 3,
+      groundRow: 7,
+    },
+    // 12-cell gap; 2+2+2+3+3=12 ; path uses shallowest (row 2)
+    chasm: { kind: 'canyon', topRow: 3, bottomRow: 7 },
+    tray: { plank: 3, longPlank: 2, pillar3: 3, pillar2: 2 },
+    vehicle: 'bike',
+  }),
+  makeLevel({
+    name: 'Crooked Crossing',
+    build: {
+      cols: 17, rows: 8, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, leftCliffTopRow: 4, rightCliffTopRow: 4,
+      groundRow: 7,
+    },
+    // 13-cell gap; 2+2+3+3+3=13
+    chasm: { kind: 'water', topRow: 5, bottomRow: 7 },
+    tray: { plank: 2, longPlank: 3, pillar2: 3, pillar1: 2 },
+    pathRowLeft: 4, pathRowRight: 4,
+    vehicle: 'bus',
+  }),
+  makeLevel({
+    name: 'Mountain Path',
+    build: {
+      cols: 17, rows: 8, leftCliffCols: 2, rightCliffCols: 3,
+      cliffTopRow: 3, leftCliffTopRow: 2, rightCliffTopRow: 3,
+      groundRow: 7,
+      obstacles: [{ r: 6, c: 6 }, { r: 6, c: 10 }],
+    },
+    // leftEdgeCol=1, rightEdgeCol=14, gap=12; planks tile 12 as 6*2
+    chasm: { kind: 'lava', topRow: 3, bottomRow: 7 },
+    tray: { plank: 6, longPlank: 1, pillar3: 3, pillar2: 2 },
+    vehicle: 'cart',
+  }),
+  makeLevel({
+    name: 'Wide Water',
+    build: {
+      cols: 18, rows: 8, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 7,
+      obstacles: [{ r: 6, c: 5 }, { r: 6, c: 9 }, { r: 6, c: 13 }],
+    },
+    // 14-cell gap; 2+2+2+2+3+3=14
+    chasm: { kind: 'water', topRow: 4, bottomRow: 7 },
+    tray: { plank: 4, longPlank: 2, pillar3: 3, pillar2: 2, stone: 2 },
+    vehicle: 'horse',
+  }),
+  makeLevel({
+    name: 'Tall Walls',
+    build: {
+      cols: 18, rows: 8, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 2, groundRow: 7,
+      obstacles: [{ r: 6, c: 7 }, { r: 6, c: 10 }],
+    },
+    // 14-cell gap; 7*2=14
+    chasm: { kind: 'canyon', topRow: 3, bottomRow: 7 },
+    tray: { plank: 7, longPlank: 1, pillar3: 4, pillar2: 2 },
+    vehicle: 'tank',
+  }),
+
+  // ---- L36-L40: gap 14-16, deep canyons, decoys ----
+  makeLevel({
+    name: 'Canyon Run',
+    build: {
+      cols: 18, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [{ r: 7, c: 6 }, { r: 7, c: 10 }, { r: 7, c: 13 }],
+    },
+    // 14-cell gap; 7*2=14
+    chasm: { kind: 'canyon', topRow: 4, bottomRow: 8 },
+    tray: { plank: 7, longPlank: 2, pillar3: 4, pillar2: 3, pillar1: 2, stone: 2 },
+    vehicle: 'fireTruck',
+  }),
+  makeLevel({
+    name: 'Lava Pit',
+    build: {
+      cols: 19, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [{ r: 7, c: 5 }, { r: 7, c: 9 }, { r: 7, c: 13 }],
+    },
+    // 15-cell gap; 5*3=15
+    chasm: { kind: 'lava', topRow: 4, bottomRow: 8 },
+    tray: { plank: 3, longPlank: 5, pillar3: 4, pillar2: 3, pillar1: 2, stone: 2 },
+    vehicle: 'bus',
+  }),
+  makeLevel({
+    name: 'Decoy Maze',
+    build: {
+      cols: 19, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [{ r: 6, c: 7 }, { r: 7, c: 11 }],
+    },
+    // 15-cell gap; 2*6+3=15
+    chasm: { kind: 'water', topRow: 4, bottomRow: 8 },
+    tray: { plank: 7, longPlank: 2, pillar3: 5, pillar2: 3, pillar1: 3, stone: 3 },
+    vehicle: 'dino',
+  }),
+  makeLevel({
+    name: 'Deep Drop',
+    build: {
+      cols: 20, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [{ r: 7, c: 6 }, { r: 7, c: 11 }],
+    },
+    // 16-cell gap; 3*4+2*2=16
+    chasm: { kind: 'canyon', topRow: 4, bottomRow: 8 },
+    tray: { plank: 3, longPlank: 4, pillar3: 4, pillar2: 3, pillar1: 2, stone: 2 },
+    vehicle: 'cart',
+  }),
+  makeLevel({
+    name: 'Triple Span',
+    build: {
+      cols: 20, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 2, groundRow: 8,
+      obstacles: [{ r: 7, c: 5 }, { r: 7, c: 10 }, { r: 7, c: 15 }],
+    },
+    // 16-cell gap; 2*5+3*2=16
+    chasm: { kind: 'lava', topRow: 3, bottomRow: 8 },
+    tray: { plank: 6, longPlank: 2, pillar3: 5, pillar2: 3, pillar1: 2, stone: 2 },
+    vehicle: 'rocket',
+  }),
+
+  // ---- L41-L45: gap 16-18, multiple obstacle clusters ----
+  makeLevel({
+    name: 'Cluster Crossing',
+    build: {
+      cols: 20, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [
+        { r: 7, c: 5 }, { r: 6, c: 5 },
+        { r: 7, c: 11 }, { r: 6, c: 11 },
+        { r: 7, c: 15 },
+      ],
+    },
+    // 16-cell gap; 2*5+3*2=16
+    chasm: { kind: 'water', topRow: 4, bottomRow: 8 },
+    tray: { plank: 6, longPlank: 2, pillar3: 5, pillar2: 4, pillar1: 3, stone: 3 },
+    vehicle: 'tank',
+  }),
+  makeLevel({
+    name: 'Boulder Field',
+    build: {
+      cols: 21, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [
+        { r: 7, c: 5 }, { r: 7, c: 8 },
+        { r: 7, c: 12 }, { r: 7, c: 15 },
+        { r: 6, c: 10 },
+      ],
+    },
+    // 17-cell gap; 2*4+3*3=17
+    chasm: { kind: 'canyon', topRow: 4, bottomRow: 8 },
+    tray: { plank: 5, longPlank: 3, pillar3: 5, pillar2: 4, pillar1: 2, stone: 3 },
+    vehicle: 'fireTruck',
+  }),
+  makeLevel({
+    name: 'Twin Cluster',
+    build: {
+      cols: 21, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, leftCliffTopRow: 3, rightCliffTopRow: 3,
+      groundRow: 8,
+      obstacles: [
+        { r: 7, c: 5 }, { r: 6, c: 5 }, { r: 7, c: 6 },
+        { r: 7, c: 14 }, { r: 6, c: 14 }, { r: 7, c: 15 },
+      ],
+    },
+    // 17-cell gap; 2+3+3+3+3+3=17
+    chasm: { kind: 'water', topRow: 4, bottomRow: 8 },
+    tray: { plank: 3, longPlank: 5, pillar3: 5, pillar2: 4, pillar1: 3, stone: 3 },
+    vehicle: 'bus',
+  }),
+  makeLevel({
+    name: 'Vast Chasm',
+    build: {
+      cols: 22, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 2, groundRow: 8,
+      obstacles: [
+        { r: 7, c: 5 }, { r: 7, c: 9 },
+        { r: 7, c: 13 }, { r: 7, c: 17 },
+      ],
+    },
+    // 18-cell gap; 2*6+3*2=18
+    chasm: { kind: 'lava', topRow: 3, bottomRow: 8 },
+    tray: { plank: 7, longPlank: 3, pillar3: 6, pillar2: 4, pillar1: 3, stone: 3 },
+    vehicle: 'dino',
+  }),
+  makeLevel({
+    name: 'Multi-Obstacle',
+    build: {
+      cols: 22, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [
+        { r: 7, c: 4 }, { r: 6, c: 4 },
+        { r: 7, c: 9 }, { r: 6, c: 9 },
+        { r: 7, c: 14 }, { r: 6, c: 14 },
+        { r: 7, c: 18 },
+      ],
+    },
+    // 18-cell gap; 3*6=18
+    chasm: { kind: 'canyon', topRow: 4, bottomRow: 8 },
+    tray: { plank: 4, longPlank: 6, pillar3: 6, pillar2: 4, pillar1: 3, stone: 3 },
+    vehicle: 'horse',
+  }),
+
+  // ---- L46-L50: ultimate set with lots of decoys ----
+  makeLevel({
+    name: 'Final Trial',
+    build: {
+      cols: 21, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, leftCliffTopRow: 2, rightCliffTopRow: 3,
+      groundRow: 8,
+      obstacles: [
+        { r: 7, c: 5 }, { r: 7, c: 9 },
+        { r: 7, c: 13 }, { r: 6, c: 11 },
+      ],
+    },
+    // 17-cell gap; 2*4+3*3=17
+    chasm: { kind: 'water', topRow: 3, bottomRow: 8 },
+    tray: { plank: 6, longPlank: 4, pillar3: 6, pillar2: 4, pillar1: 3, stone: 4 },
+    vehicle: 'tank',
+  }),
+  makeLevel({
+    name: 'Inferno Bridge',
+    build: {
+      cols: 22, rows: 9, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 8,
+      obstacles: [
+        { r: 7, c: 4 }, { r: 7, c: 8 },
+        { r: 7, c: 12 }, { r: 7, c: 16 },
+        { r: 6, c: 6 }, { r: 6, c: 14 },
+      ],
+    },
+    // 18-cell gap; 2*3+3*4=18
+    chasm: { kind: 'lava', topRow: 4, bottomRow: 8 },
+    tray: { plank: 5, longPlank: 5, pillar3: 6, pillar2: 5, pillar1: 4, stone: 4 },
+    vehicle: 'fireTruck',
+  }),
+  makeLevel({
+    name: 'Endless Span',
+    build: {
+      cols: 22, rows: 10, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 2, groundRow: 9,
+      obstacles: [
+        { r: 8, c: 5 }, { r: 8, c: 9 },
+        { r: 8, c: 13 }, { r: 8, c: 17 },
+        { r: 7, c: 7 }, { r: 7, c: 15 },
+      ],
+    },
+    // 18-cell gap; 2*6+3*2=18
+    chasm: { kind: 'canyon', topRow: 3, bottomRow: 9 },
+    tray: { plank: 7, longPlank: 4, pillar3: 7, pillar2: 5, pillar1: 4, stone: 4 },
+    vehicle: 'bus',
+  }),
+  makeLevel({
+    name: 'Grand Crossing',
+    build: {
+      cols: 22, rows: 10, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 3, groundRow: 9,
+      obstacles: [
+        { r: 8, c: 4 }, { r: 8, c: 8 },
+        { r: 8, c: 12 }, { r: 8, c: 16 },
+        { r: 7, c: 6 }, { r: 7, c: 10 }, { r: 7, c: 14 },
+      ],
+    },
+    // 18-cell gap; 3*6=18
+    chasm: { kind: 'water', topRow: 4, bottomRow: 9 },
+    tray: { plank: 4, longPlank: 6, pillar3: 7, pillar2: 5, pillar1: 4, stone: 4 },
+    vehicle: 'dino',
+  }),
+  makeLevel({
+    name: 'Bridge Master',
+    build: {
+      cols: 22, rows: 10, leftCliffCols: 2, rightCliffCols: 2,
+      cliffTopRow: 2, groundRow: 9,
+      obstacles: [
+        { r: 8, c: 4 }, { r: 8, c: 8 },
+        { r: 8, c: 12 }, { r: 8, c: 16 },
+        { r: 7, c: 6 }, { r: 7, c: 10 }, { r: 7, c: 14 },
+        { r: 6, c: 11 },
+      ],
+    },
+    // 18-cell gap; 2*6+3*2=18
+    chasm: { kind: 'lava', topRow: 3, bottomRow: 9 },
+    tray: { plank: 7, longPlank: 4, stone: 4, pillar3: 8, pillar2: 5, pillar1: 4 },
+    vehicle: 'rocket',
+  }),
 ];
 
 // =============================================================

@@ -319,6 +319,462 @@ const PART_DEFS = {
             fill="#ffffff" opacity="0.7"/>
     `,
   },
+
+  // ===== L26-L30 Heavy industrial =====
+  hydraulicPistons: {
+    w: 180, h: 160,
+    svg: `
+      <!-- left piston -->
+      <rect x="14" y="10" width="22" height="80" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <rect x="10" y="90" width="30" height="14" rx="2" fill="#3a4756"/>
+      <rect x="18" y="104" width="14" height="46" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <circle cx="25" cy="22" r="4" fill="#ff8855"/>
+      <circle cx="25" cy="50" r="4" fill="#ff8855"/>
+      <circle cx="25" cy="78" r="4" fill="#ff8855"/>
+      <!-- right piston -->
+      <rect x="144" y="10" width="22" height="80" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <rect x="140" y="90" width="30" height="14" rx="2" fill="#3a4756"/>
+      <rect x="148" y="104" width="14" height="46" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <circle cx="155" cy="22" r="4" fill="#ff8855"/>
+      <circle cx="155" cy="50" r="4" fill="#ff8855"/>
+      <circle cx="155" cy="78" r="4" fill="#ff8855"/>
+    `,
+  },
+  smokeStacks: {
+    w: 240, h: 120,
+    svg: `
+      <!-- left stack -->
+      <rect x="14" y="40" width="32" height="70" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="4"/>
+      <rect x="8" y="34" width="44" height="12" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="30" cy="22" r="14" fill="#aaa" opacity="0.6"/>
+      <circle cx="22" cy="10" r="10" fill="#aaa" opacity="0.5"/>
+      <circle cx="38" cy="6" r="8" fill="#aaa" opacity="0.4"/>
+      <!-- right stack -->
+      <rect x="194" y="40" width="32" height="70" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="4"/>
+      <rect x="188" y="34" width="44" height="12" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="210" cy="22" r="14" fill="#aaa" opacity="0.6"/>
+      <circle cx="202" cy="10" r="10" fill="#aaa" opacity="0.5"/>
+      <circle cx="218" cy="6" r="8" fill="#aaa" opacity="0.4"/>
+      <!-- center connector -->
+      <rect x="70" y="80" width="100" height="20" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="90" cy="90" r="4" fill="#3a4756"/>
+      <circle cx="120" cy="90" r="4" fill="#3a4756"/>
+      <circle cx="150" cy="90" r="4" fill="#3a4756"/>
+    `,
+  },
+  treads: {
+    w: 260, h: 90,
+    svg: `
+      <!-- left tread -->
+      <rect x="5" y="20" width="110" height="60" rx="28" fill="#3a4756" stroke="#1a2230" stroke-width="5"/>
+      <rect x="14" y="28" width="92" height="44" rx="20" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="30" cy="50" r="14" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="60" cy="50" r="14" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="90" cy="50" r="14" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="30" cy="50" r="4" fill="#aaa"/>
+      <circle cx="60" cy="50" r="4" fill="#aaa"/>
+      <circle cx="90" cy="50" r="4" fill="#aaa"/>
+      <!-- right tread -->
+      <rect x="145" y="20" width="110" height="60" rx="28" fill="#3a4756" stroke="#1a2230" stroke-width="5"/>
+      <rect x="154" y="28" width="92" height="44" rx="20" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="170" cy="50" r="14" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="200" cy="50" r="14" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="230" cy="50" r="14" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="170" cy="50" r="4" fill="#aaa"/>
+      <circle cx="200" cy="50" r="4" fill="#aaa"/>
+      <circle cx="230" cy="50" r="4" fill="#aaa"/>
+    `,
+  },
+  wiringPanel: {
+    w: 120, h: 90,
+    svg: `
+      <rect x="5" y="5" width="110" height="80" rx="4" fill="#1a2230" stroke="#3a4756" stroke-width="4"/>
+      <path d="M15 20 Q30 30 15 50 Q30 70 50 60" stroke="#ff8855" stroke-width="3" fill="none"/>
+      <path d="M30 15 Q50 25 40 50 Q30 75 60 70" stroke="#3aa3ff" stroke-width="3" fill="none"/>
+      <path d="M70 18 Q90 30 75 55 Q65 75 100 70" stroke="#ffd966" stroke-width="3" fill="none"/>
+      <path d="M85 15 Q105 30 90 50 Q70 70 105 78" stroke="#d33" stroke-width="3" fill="none"/>
+      <circle cx="20" cy="22" r="3" fill="#ff8855"/>
+      <circle cx="50" cy="62" r="3" fill="#3aa3ff"/>
+      <circle cx="100" cy="72" r="3" fill="#ffd966"/>
+      <circle cx="90" cy="20" r="3" fill="#d33"/>
+    `,
+  },
+  drillArm: {
+    w: 110, h: 220,
+    svg: `
+      <rect x="35" y="5" width="40" height="40" rx="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="30" y="40" width="50" height="30" rx="4" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <circle cx="55" cy="20" r="6" fill="#ffd966"/>
+      <rect x="38" y="68" width="34" height="18" rx="3" fill="#3a4756"/>
+      <!-- drill body -->
+      <path d="M30 86 L80 86 L70 200 L40 200 Z" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <path d="M36 100 L74 100" stroke="#3a4756" stroke-width="3"/>
+      <path d="M38 120 L72 120" stroke="#3a4756" stroke-width="3"/>
+      <path d="M40 140 L70 140" stroke="#3a4756" stroke-width="3"/>
+      <path d="M42 160 L68 160" stroke="#3a4756" stroke-width="3"/>
+      <path d="M44 180 L66 180" stroke="#3a4756" stroke-width="3"/>
+      <!-- drill tip -->
+      <path d="M40 200 L55 218 L70 200 Z" fill="#3a4756" stroke="#1a2230" stroke-width="4"/>
+    `,
+  },
+
+  // ===== L31-L35 Big guns =====
+  gatlingGun: {
+    w: 130, h: 90,
+    svg: `
+      <rect x="5" y="22" width="40" height="46" rx="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="40" y="14" width="20" height="62" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <!-- barrels -->
+      <circle cx="80" cy="30" r="8" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <circle cx="80" cy="46" r="8" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <circle cx="80" cy="62" r="8" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <rect x="80" y="22" width="44" height="16" rx="2" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <rect x="80" y="38" width="44" height="16" rx="2" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <rect x="80" y="54" width="44" height="16" rx="2" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <circle cx="118" cy="30" r="4" fill="#d33"/>
+      <circle cx="118" cy="46" r="4" fill="#d33"/>
+      <circle cx="118" cy="62" r="4" fill="#d33"/>
+    `,
+  },
+  missilePods: {
+    w: 280, h: 80,
+    svg: `
+      <!-- left pod -->
+      <rect x="5" y="10" width="80" height="60" rx="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="14" y="18" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="38" y="18" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="62" y="18" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="14" y="44" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="38" y="44" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="62" y="44" width="20" height="20" rx="3" fill="#3a4756"/>
+      <path d="M20 22 L28 38 L16 38 Z" fill="#d33"/>
+      <path d="M44 22 L52 38 L40 38 Z" fill="#d33"/>
+      <path d="M68 22 L76 38 L64 38 Z" fill="#d33"/>
+      <path d="M20 48 L28 64 L16 64 Z" fill="#d33"/>
+      <path d="M44 48 L52 64 L40 64 Z" fill="#d33"/>
+      <path d="M68 48 L76 64 L64 64 Z" fill="#d33"/>
+      <!-- right pod -->
+      <rect x="195" y="10" width="80" height="60" rx="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="204" y="18" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="228" y="18" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="252" y="18" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="204" y="44" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="228" y="44" width="20" height="20" rx="3" fill="#3a4756"/>
+      <rect x="252" y="44" width="20" height="20" rx="3" fill="#3a4756"/>
+      <path d="M210 22 L218 38 L206 38 Z" fill="#d33"/>
+      <path d="M234 22 L242 38 L222 38 Z" fill="#d33"/>
+      <path d="M258 22 L266 38 L254 38 Z" fill="#d33"/>
+      <path d="M210 48 L218 64 L206 64 Z" fill="#d33"/>
+      <path d="M234 48 L242 64 L230 64 Z" fill="#d33"/>
+      <path d="M258 48 L266 64 L254 64 Z" fill="#d33"/>
+    `,
+  },
+  beamRifle: {
+    w: 220, h: 70,
+    svg: `
+      <rect x="5" y="22" width="40" height="30" rx="5" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="40" y="14" width="120" height="42" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <rect x="50" y="22" width="100" height="8" rx="2" fill="#aaa"/>
+      <rect x="50" y="38" width="100" height="6" rx="2" fill="#3aa3ff"/>
+      <rect x="160" y="20" width="50" height="30" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="200" cy="35" r="8" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="200" cy="35" r="3" fill="#ffffff"/>
+      <rect x="80" y="48" width="14" height="18" rx="2" fill="#3a4756"/>
+    `,
+  },
+  plasmaSword: {
+    w: 70, h: 220,
+    svg: `
+      <rect x="22" y="170" width="22" height="46" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <rect x="14" y="158" width="38" height="16" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="33" cy="166" r="4" fill="#ff8855"/>
+      <path d="M22 158 L33 6 L44 158 Z" fill="#ff8855" stroke="#ffd966" stroke-width="3"/>
+      <path d="M28 152 L33 20 L38 152 Z" fill="#ffffff" opacity="0.8"/>
+      <path d="M20 100 Q33 110 46 100" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+    `,
+  },
+  railguns: {
+    w: 220, h: 90,
+    svg: `
+      <!-- left railgun -->
+      <rect x="5" y="35" width="100" height="20" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <rect x="5" y="25" width="14" height="40" rx="3" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+      <rect x="22" y="20" width="76" height="6" rx="2" fill="#3aa3ff"/>
+      <rect x="22" y="64" width="76" height="6" rx="2" fill="#3aa3ff"/>
+      <circle cx="100" cy="45" r="6" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <!-- right railgun -->
+      <rect x="115" y="35" width="100" height="20" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <rect x="201" y="25" width="14" height="40" rx="3" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+      <rect x="122" y="20" width="76" height="6" rx="2" fill="#3aa3ff"/>
+      <rect x="122" y="64" width="76" height="6" rx="2" fill="#3aa3ff"/>
+      <circle cx="120" cy="45" r="6" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+    `,
+  },
+
+  // ===== L36-L40 Energy / power =====
+  reactorCore: {
+    w: 160, h: 200,
+    svg: `
+      <rect x="20" y="10" width="120" height="180" rx="10" fill="#3a4756" stroke="#1a2230" stroke-width="5"/>
+      <rect x="30" y="20" width="100" height="160" rx="6" fill="#1a2230"/>
+      <!-- fins -->
+      <rect x="5" y="30" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="5" y="60" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="5" y="90" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="5" y="120" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="5" y="150" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="137" y="30" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="137" y="60" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="137" y="90" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="137" y="120" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="137" y="150" width="18" height="14" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <!-- core -->
+      <circle cx="80" cy="100" r="50" fill="#ffd966" stroke="#7a5a1f" stroke-width="4"/>
+      <circle cx="80" cy="100" r="34" fill="#ff8855"/>
+      <circle cx="80" cy="100" r="18" fill="#ffffff"/>
+      <rect x="40" y="160" width="80" height="14" rx="3" fill="#3aa3ff"/>
+    `,
+  },
+  energyShield: {
+    w: 360, h: 480,
+    svg: `
+      <ellipse cx="180" cy="240" rx="170" ry="230" fill="#3aa3ff" opacity="0.18"
+               stroke="#3aa3ff" stroke-width="6" stroke-dasharray="14 8"/>
+      <ellipse cx="180" cy="240" rx="155" ry="215" fill="none"
+               stroke="#ffffff" stroke-width="3" opacity="0.5"/>
+      <path d="M180 30 Q40 90 30 240" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.4"/>
+      <path d="M180 30 Q320 90 330 240" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.4"/>
+    `,
+  },
+  capacitorBanks: {
+    w: 260, h: 60,
+    svg: `
+      <rect x="5" y="14" width="40" height="40" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="25" cy="34" r="9" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="55" y="14" width="40" height="40" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="75" cy="34" r="9" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="105" y="14" width="40" height="40" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="125" cy="34" r="9" fill="#ffd966" stroke="#ffffff" stroke-width="2"/>
+      <rect x="155" y="14" width="40" height="40" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="175" cy="34" r="9" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="205" y="14" width="40" height="40" rx="3" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="225" cy="34" r="9" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="5" y="6" width="240" height="6" rx="2" fill="#aaa"/>
+    `,
+  },
+  plasmaWings: {
+    w: 420, h: 260,
+    svg: `
+      <!-- left plasma wing -->
+      <path d="M210 30 Q90 0 10 100 Q60 120 130 110 Q170 100 210 90 Z"
+            fill="#ff8855" stroke="#ffd966" stroke-width="4" opacity="0.85"/>
+      <path d="M210 90 Q80 110 20 200 Q90 220 150 180 Q190 160 210 140 Z"
+            fill="#ff8855" stroke="#ffd966" stroke-width="4" opacity="0.85"/>
+      <path d="M210 140 Q110 180 50 250 Q120 250 180 220 Q200 200 210 180 Z"
+            fill="#ffd966" stroke="#ffffff" stroke-width="3" opacity="0.85"/>
+      <!-- right plasma wing -->
+      <path d="M210 30 Q330 0 410 100 Q360 120 290 110 Q250 100 210 90 Z"
+            fill="#ff8855" stroke="#ffd966" stroke-width="4" opacity="0.85"/>
+      <path d="M210 90 Q340 110 400 200 Q330 220 270 180 Q230 160 210 140 Z"
+            fill="#ff8855" stroke="#ffd966" stroke-width="4" opacity="0.85"/>
+      <path d="M210 140 Q310 180 370 250 Q300 250 240 220 Q220 200 210 180 Z"
+            fill="#ffd966" stroke="#ffffff" stroke-width="3" opacity="0.85"/>
+      <!-- center spine -->
+      <rect x="200" y="40" width="20" height="200" rx="6" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+    `,
+  },
+  antiGravRings: {
+    w: 320, h: 120,
+    svg: `
+      <ellipse cx="160" cy="60" rx="150" ry="40" fill="none"
+               stroke="#3aa3ff" stroke-width="6" opacity="0.85"/>
+      <ellipse cx="160" cy="60" rx="120" ry="32" fill="none"
+               stroke="#ffd966" stroke-width="5" opacity="0.85"/>
+      <ellipse cx="160" cy="60" rx="90" ry="24" fill="none"
+               stroke="#ff8855" stroke-width="4" opacity="0.85"/>
+      <circle cx="10" cy="60" r="7" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="310" cy="60" r="7" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="40" cy="60" r="6" fill="#ffd966" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="280" cy="60" r="6" fill="#ffd966" stroke="#ffffff" stroke-width="2"/>
+    `,
+  },
+
+  // ===== L41-L45 Sensor / command tower =====
+  radarDish: {
+    w: 140, h: 130,
+    svg: `
+      <rect x="60" y="80" width="20" height="46" fill="#3a4756"/>
+      <path d="M10 70 Q70 -10 130 70 L120 80 Q70 20 20 80 Z"
+            fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <path d="M22 76 Q70 18 118 76" stroke="#3a4756" stroke-width="2" fill="none"/>
+      <path d="M35 80 Q70 34 105 80" stroke="#3a4756" stroke-width="2" fill="none"/>
+      <rect x="66" y="44" width="6" height="36" fill="#3a4756"/>
+      <circle cx="69" cy="40" r="6" fill="#d33" stroke="#1a2230" stroke-width="2"/>
+    `,
+  },
+  multiEyeVisor: {
+    w: 130, h: 36,
+    svg: `
+      <path d="M5 30 L10 5 L120 5 L125 30 Z"
+            fill="#1a2230" stroke="#3a4756" stroke-width="4"/>
+      <circle cx="22" cy="18" r="6" fill="#d33" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="42" cy="18" r="6" fill="#ffd966" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="62" cy="18" r="6" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="82" cy="18" r="6" fill="#ffd966" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="102" cy="18" r="6" fill="#d33" stroke="#ffffff" stroke-width="2"/>
+    `,
+  },
+  commandTower: {
+    w: 140, h: 180,
+    svg: `
+      <rect x="40" y="120" width="60" height="56" rx="3" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="30" y="80" width="80" height="44" rx="3" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="40" y="90" width="60" height="20" rx="2" fill="#3aa3ff"/>
+      <rect x="48" y="130" width="14" height="14" rx="2" fill="#ffd966"/>
+      <rect x="68" y="130" width="14" height="14" rx="2" fill="#ffd966"/>
+      <rect x="48" y="152" width="34" height="6" rx="2" fill="#3a4756"/>
+      <!-- antenna spire -->
+      <rect x="66" y="20" width="8" height="60" fill="#aaa" stroke="#3a4756" stroke-width="2"/>
+      <path d="M70 5 L60 30 L80 30 Z" fill="#d33" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="70" cy="14" r="3" fill="#ffd966"/>
+    `,
+  },
+  cockpitHatch: {
+    w: 100, h: 90,
+    svg: `
+      <path d="M10 80 Q10 10 50 10 Q90 10 90 80 Z"
+            fill="#3aa3ff" stroke="#3a4756" stroke-width="4"/>
+      <path d="M50 14 L50 78" stroke="#3a4756" stroke-width="3"/>
+      <path d="M16 70 Q16 20 50 18" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.7"/>
+      <rect x="22" y="80" width="56" height="8" rx="2" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="34" cy="84" r="2" fill="#3a4756"/>
+      <circle cx="66" cy="84" r="2" fill="#3a4756"/>
+    `,
+  },
+  megaAntenna: {
+    w: 110, h: 200,
+    svg: `
+      <rect x="50" y="80" width="10" height="118" fill="#aaa" stroke="#3a4756" stroke-width="3"/>
+      <rect x="36" y="180" width="38" height="14" rx="2" fill="#3a4756"/>
+      <!-- crossbars -->
+      <rect x="20" y="100" width="70" height="6" rx="1" fill="#3a4756"/>
+      <rect x="14" y="60" width="82" height="6" rx="1" fill="#3a4756"/>
+      <rect x="8" y="30" width="94" height="6" rx="1" fill="#3a4756"/>
+      <!-- bulb cluster top -->
+      <circle cx="55" cy="14" r="11" fill="#d33" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="30" cy="22" r="6" fill="#ffd966" stroke="#3a4756" stroke-width="2"/>
+      <circle cx="80" cy="22" r="6" fill="#ffd966" stroke="#3a4756" stroke-width="2"/>
+      <circle cx="52" cy="10" r="3" fill="#ffffff"/>
+    `,
+  },
+
+  // ===== L46-L50 Ultimate forms =====
+  battlePack: {
+    w: 360, h: 260,
+    svg: `
+      <!-- center backpack -->
+      <rect x="130" y="40" width="100" height="180" rx="10" fill="#bbc4d0" stroke="#3a4756" stroke-width="5"/>
+      <rect x="145" y="60" width="70" height="40" rx="4" fill="#3a4756"/>
+      <rect x="145" y="110" width="70" height="6" rx="2" fill="#aaa"/>
+      <rect x="145" y="125" width="70" height="6" rx="2" fill="#aaa"/>
+      <circle cx="180" cy="160" r="22" fill="#ffd966" stroke="#7a5a1f" stroke-width="3"/>
+      <circle cx="180" cy="160" r="11" fill="#ff8855"/>
+      <!-- left missile rack -->
+      <rect x="20" y="30" width="100" height="80" rx="6" fill="#3a4756" stroke="#1a2230" stroke-width="4"/>
+      <rect x="30" y="40" width="20" height="20" rx="2" fill="#aaa"/>
+      <rect x="58" y="40" width="20" height="20" rx="2" fill="#aaa"/>
+      <rect x="86" y="40" width="20" height="20" rx="2" fill="#aaa"/>
+      <rect x="30" y="70" width="20" height="20" rx="2" fill="#aaa"/>
+      <rect x="58" y="70" width="20" height="20" rx="2" fill="#aaa"/>
+      <rect x="86" y="70" width="20" height="20" rx="2" fill="#aaa"/>
+      <path d="M40 42 L46 56 L34 56 Z" fill="#d33"/>
+      <path d="M68 42 L74 56 L62 56 Z" fill="#d33"/>
+      <path d="M96 42 L102 56 L90 56 Z" fill="#d33"/>
+      <path d="M40 72 L46 86 L34 86 Z" fill="#d33"/>
+      <path d="M68 72 L74 86 L62 86 Z" fill="#d33"/>
+      <path d="M96 72 L102 86 L90 86 Z" fill="#d33"/>
+      <!-- right dual cannons -->
+      <rect x="240" y="40" width="100" height="20" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <rect x="240" y="68" width="100" height="20" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="336" cy="50" r="6" fill="#d33"/>
+      <circle cx="336" cy="78" r="6" fill="#d33"/>
+      <!-- thrusters bottom -->
+      <rect x="140" y="220" width="22" height="36" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <rect x="200" y="220" width="22" height="36" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="151" cy="252" r="6" fill="#ff8855"/>
+      <circle cx="211" cy="252" r="6" fill="#ff8855"/>
+    `,
+  },
+  superCrown: {
+    w: 220, h: 110,
+    svg: `
+      <path d="M110 100 L20 10 L40 60 L60 20 L80 70 L110 14 L140 70 L160 20 L180 60 L200 10 Z"
+            fill="#ffd966" stroke="#3a4756" stroke-width="5"/>
+      <circle cx="40" cy="46" r="6" fill="#d33" stroke="#3a4756" stroke-width="2"/>
+      <circle cx="80" cy="56" r="6" fill="#3aa3ff" stroke="#3a4756" stroke-width="2"/>
+      <circle cx="110" cy="34" r="8" fill="#d33" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="140" cy="56" r="6" fill="#3aa3ff" stroke="#3a4756" stroke-width="2"/>
+      <circle cx="180" cy="46" r="6" fill="#d33" stroke="#3a4756" stroke-width="2"/>
+      <path d="M90 80 L110 40 L130 80 Z" fill="#ff8855" stroke="#3a4756" stroke-width="3"/>
+    `,
+  },
+  megaCannon: {
+    w: 420, h: 130,
+    svg: `
+      <rect x="5" y="50" width="60" height="30" rx="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="4"/>
+      <rect x="60" y="35" width="280" height="60" rx="6" fill="#3a4756" stroke="#1a2230" stroke-width="5"/>
+      <rect x="75" y="50" width="250" height="10" rx="2" fill="#aaa"/>
+      <rect x="75" y="70" width="250" height="10" rx="2" fill="#aaa"/>
+      <rect x="340" y="20" width="74" height="90" rx="6" fill="#3a4756" stroke="#1a2230" stroke-width="4"/>
+      <circle cx="395" cy="65" r="14" fill="#d33" stroke="#1a2230" stroke-width="3"/>
+      <circle cx="395" cy="65" r="6" fill="#ffffff"/>
+      <!-- power coils -->
+      <rect x="80" y="20" width="14" height="14" rx="2" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="120" y="20" width="14" height="14" rx="2" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="160" y="20" width="14" height="14" rx="2" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="200" y="20" width="14" height="14" rx="2" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="240" y="20" width="14" height="14" rx="2" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="280" y="20" width="14" height="14" rx="2" fill="#3aa3ff" stroke="#ffffff" stroke-width="2"/>
+      <rect x="80" y="96" width="14" height="14" rx="2" fill="#ffd966" stroke="#3a4756" stroke-width="2"/>
+      <rect x="160" y="96" width="14" height="14" rx="2" fill="#ffd966" stroke="#3a4756" stroke-width="2"/>
+      <rect x="240" y="96" width="14" height="14" rx="2" fill="#ffd966" stroke="#3a4756" stroke-width="2"/>
+    `,
+  },
+  giantSword: {
+    w: 110, h: 360,
+    svg: `
+      <rect x="38" y="290" width="34" height="64" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="4"/>
+      <rect x="24" y="276" width="62" height="20" rx="4" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <rect x="5" y="262" width="100" height="20" rx="3" fill="#aaa" stroke="#3a4756" stroke-width="4"/>
+      <path d="M30 262 L55 8 L80 262 Z" fill="#3aa3ff" stroke="#ffffff" stroke-width="4"/>
+      <path d="M38 256 L55 30 L72 256 Z" fill="#ffffff" opacity="0.7"/>
+      <circle cx="55" cy="288" r="6" fill="#ffd966" stroke="#3a4756" stroke-width="2"/>
+      <path d="M18 150 Q55 160 92 150" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.5"/>
+    `,
+  },
+  ultimateHalo: {
+    w: 480, h: 200,
+    svg: `
+      <ellipse cx="240" cy="100" rx="230" ry="60" fill="none"
+               stroke="#ffd966" stroke-width="8" opacity="0.9"/>
+      <ellipse cx="240" cy="100" rx="230" ry="60" fill="none"
+               stroke="#ffffff" stroke-width="3"/>
+      <!-- radiating spokes -->
+      <path d="M240 100 L20 60" stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <path d="M240 100 L60 30" stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <path d="M240 100 L130 10" stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <path d="M240 100 L240 0"  stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <path d="M240 100 L350 10" stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <path d="M240 100 L420 30" stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <path d="M240 100 L460 60" stroke="#ffd966" stroke-width="3" opacity="0.7"/>
+      <circle cx="240" cy="100" r="14" fill="#ffffff"/>
+      <circle cx="240" cy="100" r="8"  fill="#ffd966"/>
+      <circle cx="60"  cy="80"  r="5" fill="#ffffff"/>
+      <circle cx="420" cy="80"  r="5" fill="#ffffff"/>
+      <circle cx="160" cy="40"  r="4" fill="#ffffff"/>
+      <circle cx="320" cy="40"  r="4" fill="#ffffff"/>
+    `,
+  },
 };
 
 // Stack order (higher number = drawn on top).
@@ -352,6 +808,41 @@ const Z_ORDER = {
   energyWings: 0,
   dualCannons: 6,
   energySword: 12,
+
+  // L26-L30 Heavy industrial
+  hydraulicPistons: 0,    // behind legs
+  smokeStacks: 0,         // behind shoulders
+  treads: 2,              // replaces/over feet area
+  wiringPanel: 2,         // on body, under chest plate
+  drillArm: 6,            // right arm weapon
+
+  // L31-L35 Big guns
+  gatlingGun: 6,
+  missilePods: 6,
+  beamRifle: 7,           // held out front
+  plasmaSword: 12,        // sword class
+  railguns: 6,            // shoulder mount
+
+  // L36-L40 Energy / power
+  reactorCore: -1,        // big back-mounted, drawn behind everything
+  energyShield: 13,       // translucent overlay on top
+  capacitorBanks: 5,      // chest belt
+  plasmaWings: -1,        // back, behind body
+  antiGravRings: 0,       // ring around legs
+
+  // L41-L45 Sensor / command tower
+  radarDish: 11,          // top of head
+  multiEyeVisor: 9,
+  commandTower: 11,
+  cockpitHatch: 5,        // chest
+  megaAntenna: 11,
+
+  // L46-L50 Ultimate forms
+  battlePack: -1,         // huge back rig behind body
+  superCrown: 12,
+  megaCannon: 8,          // huge weapon in front
+  giantSword: 13,
+  ultimateHalo: 14,       // crowning glory above head
 };
 
 // Slot positions per level frame. Coordinates are relative to top-left of the
@@ -406,7 +897,67 @@ const SLOT_POS_BIG = {
   energyWings:    { x: 70,  y: 100 },
   dualCannons:    { x: 80,  y: 100 },
   energySword:    { x: 380, y: 130 },
+
+  // L26-L30 Heavy industrial
+  hydraulicPistons: { x: 145, y: 290 },
+  smokeStacks:      { x: 110, y: 50 },
+  treads:           { x: 100, y: 420 },
+  wiringPanel:      { x: 180, y: 160 },
+  drillArm:         { x: 340, y: 200 },
+
+  // L31-L35 Big guns
+  gatlingGun:       { x: 320, y: 200 },
+  missilePods:      { x: 90,  y: 100 },
+  beamRifle:        { x: 130, y: 220 },
+  plasmaSword:      { x: 380, y: 100 },
+  railguns:         { x: 130, y: 80  },
+
+  // L36-L40 Energy / power
+  reactorCore:      { x: 150, y: 100 },
+  energyShield:     { x: 50,  y: 30  },
+  capacitorBanks:   { x: 100, y: 250 },
+  plasmaWings:      { x: 30,  y: 70  },
+  antiGravRings:    { x: 70,  y: 420 },
+
+  // L41-L45 Sensor / command tower
+  radarDish:        { x: 165, y: -90 },
+  multiEyeVisor:    { x: 165, y: 50  },
+  commandTower:     { x: 165, y: -130 },
+  cockpitHatch:     { x: 185, y: 165 },
+  megaAntenna:      { x: 180, y: -150 },
+
+  // L46-L50 Ultimate forms
+  battlePack:       { x: 60,  y: 80  },
+  superCrown:       { x: 125, y: -90 },
+  megaCannon:       { x: 30,  y: 220 },
+  giantSword:       { x: 420, y: 30  },
+  ultimateHalo:     { x: 0,   y: -100 },
 };
+
+// XL frame slot positions for ultimate-form levels (L46-L50, frame 640x720).
+// Built off SLOT_POS_BIG but shifted to recenter on the larger canvas (+70px x, +80px y).
+const SLOT_POS_XL = (() => {
+  const m = {};
+  for (const k of Object.keys(SLOT_POS_BIG)) {
+    const p = SLOT_POS_BIG[k];
+    m[k] = { x: p.x + 70, y: p.y + 80 };
+  }
+  // A few specific re-tweaks for parts that need to sit at the edges of the new
+  // larger frame.
+  m.ultimateHalo  = { x: 80,  y: -30 };
+  m.giantSword    = { x: 500, y: 100 };
+  m.megaCannon    = { x: 100, y: 300 };
+  m.battlePack    = { x: 100, y: 140 };
+  m.superCrown    = { x: 195, y: -20 };
+  m.commandTower  = { x: 235, y: -60 };
+  m.megaAntenna   = { x: 250, y: -80 };
+  m.radarDish     = { x: 235, y: -20 };
+  m.energyShield  = { x: 130, y: 110 };
+  m.plasmaWings   = { x: 100, y: 150 };
+  m.reactorCore   = { x: 220, y: 180 };
+  m.energyWings   = { x: 140, y: 180 };
+  return m;
+})();
 
 export const ROBOT_LEVELS = [
   // L1-L5 originals (default 320x400 frame)
@@ -463,6 +1014,66 @@ export const ROBOT_LEVELS = [
     parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'mechFeet', 'visor', 'bulkyShoulders', 'gauntlets', 'chestCore', 'dualCannons', 'energySword', 'energyWings', 'headCrest'] },
   { name: 'MECH READY', frameW: 500, frameH: 560, slotPos: SLOT_POS_BIG,
     parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'mechFeet', 'visor', 'bulkyShoulders', 'gauntlets', 'dualCannons', 'energySword', 'energyWings', 'headCrest', 'ultraCore'] },
+
+  // ===== L26-L30 Heavy industrial =====
+  { name: 'Hydraulic Legs', frameW: 520, frameH: 600, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'mechFeet', 'visor', 'bulkyShoulders', 'gauntlets', 'dualCannons', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons'] },
+  { name: 'Smoke Stacks', frameW: 520, frameH: 600, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'mechFeet', 'visor', 'gauntlets', 'dualCannons', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'smokeStacks'] },
+  { name: 'Tank Treads', frameW: 540, frameH: 620, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'dualCannons', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'smokeStacks', 'treads'] },
+  { name: 'Wired Up', frameW: 540, frameH: 620, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'dualCannons', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'smokeStacks', 'treads', 'wiringPanel'] },
+  { name: 'Drill Arm', frameW: 560, frameH: 640, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'smokeStacks', 'treads', 'wiringPanel', 'drillArm'] },
+
+  // ===== L31-L35 Big guns =====
+  { name: 'Gatling Gun', frameW: 560, frameH: 640, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'smokeStacks', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun'] },
+  { name: 'Missile Pods', frameW: 560, frameH: 640, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods'] },
+  { name: 'Beam Rifle', frameW: 580, frameH: 640, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle'] },
+  { name: 'Plasma Sword', frameW: 580, frameH: 660, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'energyWings', 'headCrest', 'ultraCore', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword'] },
+  { name: 'Railguns Up', frameW: 580, frameH: 660, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'headCrest', 'ultraCore', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns'] },
+
+  // ===== L36-L40 Energy / power =====
+  { name: 'Reactor Core', frameW: 600, frameH: 680, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore'] },
+  { name: 'Capacitor Banks', frameW: 600, frameH: 680, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks'] },
+  { name: 'Plasma Wings', frameW: 600, frameH: 680, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings'] },
+  { name: 'Anti-Grav Rings', frameW: 600, frameH: 680, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings'] },
+  { name: 'Energy Shield', frameW: 620, frameH: 700, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'visor', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings', 'energyShield'] },
+
+  // ===== L41-L45 Sensor / command tower =====
+  { name: 'Multi-Eye Visor', frameW: 620, frameH: 700, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings', 'multiEyeVisor'] },
+  { name: 'Cockpit Hatch', frameW: 620, frameH: 700, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'headCrest', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch'] },
+  { name: 'Radar Dish', frameW: 620, frameH: 720, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'radarDish'] },
+  { name: 'Mega Antenna', frameW: 620, frameH: 740, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'megaAntenna'] },
+  { name: 'Command Tower', frameW: 640, frameH: 760, slotPos: SLOT_POS_BIG,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'missilePods', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'plasmaWings', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'commandTower'] },
+
+  // ===== L46-L50 Ultimate forms =====
+  { name: 'Battle Pack', frameW: 640, frameH: 760, slotPos: SLOT_POS_XL,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'commandTower', 'battlePack'] },
+  { name: 'Super Crown', frameW: 640, frameH: 760, slotPos: SLOT_POS_XL,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'gatlingGun', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'battlePack', 'superCrown'] },
+  { name: 'Mega Cannon', frameW: 640, frameH: 760, slotPos: SLOT_POS_XL,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'beamRifle', 'plasmaSword', 'railguns', 'reactorCore', 'capacitorBanks', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'battlePack', 'superCrown', 'megaCannon'] },
+  { name: 'Giant Sword', frameW: 660, frameH: 780, slotPos: SLOT_POS_XL,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'beamRifle', 'railguns', 'reactorCore', 'capacitorBanks', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'battlePack', 'superCrown', 'megaCannon', 'giantSword'] },
+  { name: 'ULTIMATE MECH', frameW: 660, frameH: 800, slotPos: SLOT_POS_XL,
+    parts: ['head', 'bigTorso', 'arms', 'bigLegs', 'gauntlets', 'hydraulicPistons', 'treads', 'wiringPanel', 'drillArm', 'beamRifle', 'railguns', 'reactorCore', 'capacitorBanks', 'antiGravRings', 'multiEyeVisor', 'cockpitHatch', 'battlePack', 'superCrown', 'megaCannon', 'giantSword', 'ultimateHalo'] },
 ];
 
 // Backward-compatible defaults (kept as module-level constants for the original

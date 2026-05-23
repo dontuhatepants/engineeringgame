@@ -536,6 +536,311 @@ const JOB_DEFS = {
       `,
     ],
   },
+  // ===== Single-step additions =================================================
+  leakyFaucet: {
+    label: 'leaky faucet',
+    tool: 'wrench',
+    broken: `
+      <rect x="20" y="74" width="80" height="14" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <rect x="52" y="30" width="16" height="48" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="60" cy="26" r="10" fill="#d33" stroke="#7a1a1a" stroke-width="2"/>
+      <line x1="50" y1="26" x2="70" y2="26" stroke="#7a1a1a" stroke-width="2"/>
+      <line x1="60" y1="16" x2="60" y2="36" stroke="#7a1a1a" stroke-width="2"/>
+      <circle cx="60" cy="98" r="5" fill="#3aa3ff"/>
+      <circle cx="50" cy="106" r="4" fill="#3aa3ff"/>
+      <circle cx="70" cy="104" r="3" fill="#3aa3ff"/>
+    `,
+    fixed: `
+      <rect x="20" y="74" width="80" height="14" fill="#3a4756" stroke="#1a2230" stroke-width="2"/>
+      <rect x="52" y="30" width="16" height="48" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+      <circle cx="60" cy="26" r="10" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+      <line x1="50" y1="26" x2="70" y2="26" stroke="#1f5d99" stroke-width="2"/>
+      <line x1="60" y1="16" x2="60" y2="36" stroke="#1f5d99" stroke-width="2"/>
+    `,
+  },
+  // ===== Multi-step additions ==================================================
+  looseTile: {
+    label: 'loose tile',
+    tools: ['hammer', 'glue', 'paintbrush'],
+    stages: [
+      // 0: tile popped up, askew
+      `
+        <rect x="6" y="80" width="108" height="30" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="20" y="40" width="40" height="40" fill="#bbc4d0" stroke="#3a4756" stroke-width="3" transform="rotate(-12 40 60)"/>
+        <rect x="64" y="80" width="40" height="20" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+      `,
+      // 1: hammered flat
+      `
+        <rect x="6" y="80" width="108" height="30" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="20" y="80" width="40" height="20" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="64" y="80" width="40" height="20" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <line x1="60" y1="80" x2="60" y2="100" stroke="#3a4756" stroke-width="2" stroke-dasharray="3 2"/>
+      `,
+      // 2: glued
+      `
+        <rect x="6" y="80" width="108" height="30" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="20" y="80" width="40" height="20" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="64" y="80" width="40" height="20" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="56" y="78" width="8" height="24" fill="#fff58a" stroke="#c19a30" stroke-width="2"/>
+      `,
+      // 3: painted
+      `
+        <rect x="6" y="80" width="108" height="30" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="20" y="80" width="40" height="20" fill="#ffd966" stroke="#c19a30" stroke-width="3"/>
+        <rect x="64" y="80" width="40" height="20" fill="#ffd966" stroke="#c19a30" stroke-width="3"/>
+        <line x1="60" y1="80" x2="60" y2="100" stroke="#c19a30" stroke-width="2"/>
+      `,
+    ],
+  },
+  brokenRadio: {
+    label: 'broken radio',
+    tools: ['screwdriver', 'wrench', 'bulb'],
+    stages: [
+      // 0: radio with loose panel
+      `
+        <rect x="14" y="30" width="92" height="70" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <rect x="22" y="40" width="50" height="30" fill="#1a2230" stroke="#000" stroke-width="2" transform="rotate(-8 47 55)"/>
+        <circle cx="86" cy="50" r="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <circle cx="86" cy="74" r="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <rect x="28" y="78" width="40" height="16" fill="#1a2230" stroke="#000" stroke-width="2"/>
+      `,
+      // 1: panel screwed on
+      `
+        <rect x="14" y="30" width="92" height="70" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <rect x="22" y="40" width="50" height="30" fill="#1a2230" stroke="#000" stroke-width="2"/>
+        <circle cx="86" cy="50" r="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <circle cx="86" cy="74" r="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <rect x="28" y="78" width="40" height="16" fill="#1a2230" stroke="#000" stroke-width="2"/>
+        <circle cx="26" cy="44" r="2" fill="#bbc4d0"/>
+        <circle cx="68" cy="44" r="2" fill="#bbc4d0"/>
+        <circle cx="26" cy="66" r="2" fill="#bbc4d0"/>
+        <circle cx="68" cy="66" r="2" fill="#bbc4d0"/>
+      `,
+      // 2: antenna bolt tight
+      `
+        <rect x="14" y="30" width="92" height="70" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <rect x="22" y="40" width="50" height="30" fill="#1a2230" stroke="#000" stroke-width="2"/>
+        <circle cx="86" cy="50" r="6" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <circle cx="86" cy="74" r="6" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="28" y="78" width="40" height="16" fill="#1a2230" stroke="#000" stroke-width="2"/>
+        <line x1="60" y1="30" x2="78" y2="10" stroke="#bbc4d0" stroke-width="3"/>
+        <circle cx="60" cy="30" r="4" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+      `,
+      // 3: indicator light on
+      `
+        <rect x="14" y="30" width="92" height="70" rx="4" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <rect x="22" y="40" width="50" height="30" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <circle cx="86" cy="50" r="6" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <circle cx="86" cy="74" r="6" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="28" y="78" width="40" height="16" fill="#1a2230" stroke="#000" stroke-width="2"/>
+        <line x1="60" y1="30" x2="78" y2="10" stroke="#bbc4d0" stroke-width="3"/>
+        <circle cx="60" cy="30" r="4" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <circle cx="96" cy="38" r="5" fill="#fff58a" stroke="#c19a30" stroke-width="2"/>
+        <circle cx="96" cy="38" r="9" fill="#ffd966" opacity="0.35"/>
+      `,
+    ],
+  },
+  rustyBike: {
+    label: 'rusty bike',
+    tools: ['wrench', 'paintbrush', 'pump'],
+    stages: [
+      // 0: rusty, flat tire, loose bolt
+      `
+        <circle cx="32" cy="80" r="20" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <ellipse cx="88" cy="86" rx="22" ry="10" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <line x1="32" y1="80" x2="70" y2="40" stroke="#7a5328" stroke-width="4"/>
+        <line x1="88" y1="80" x2="70" y2="40" stroke="#7a5328" stroke-width="4"/>
+        <line x1="32" y1="80" x2="88" y2="80" stroke="#7a5328" stroke-width="4"/>
+        <polygon points="70,30 80,36 80,46 70,52 60,46 60,36" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <rect x="60" y="20" width="20" height="6" fill="#7a5328"/>
+      `,
+      // 1: bolt tightened
+      `
+        <circle cx="32" cy="80" r="20" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <ellipse cx="88" cy="86" rx="22" ry="10" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <line x1="32" y1="80" x2="70" y2="40" stroke="#7a5328" stroke-width="4"/>
+        <line x1="88" y1="80" x2="70" y2="40" stroke="#7a5328" stroke-width="4"/>
+        <line x1="32" y1="80" x2="88" y2="80" stroke="#7a5328" stroke-width="4"/>
+        <polygon points="70,30 80,36 80,46 70,52 60,46 60,36" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="60" y="20" width="20" height="6" fill="#7a5328"/>
+      `,
+      // 2: painted bright
+      `
+        <circle cx="32" cy="80" r="20" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <ellipse cx="88" cy="86" rx="22" ry="10" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <line x1="32" y1="80" x2="70" y2="40" stroke="#d33" stroke-width="4"/>
+        <line x1="88" y1="80" x2="70" y2="40" stroke="#d33" stroke-width="4"/>
+        <line x1="32" y1="80" x2="88" y2="80" stroke="#d33" stroke-width="4"/>
+        <polygon points="70,30 80,36 80,46 70,52 60,46 60,36" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="60" y="20" width="20" height="6" fill="#d33"/>
+      `,
+      // 3: tire pumped
+      `
+        <circle cx="32" cy="80" r="20" fill="#1a2230" stroke="#000" stroke-width="3"/>
+        <circle cx="32" cy="80" r="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <circle cx="88" cy="80" r="20" fill="#1a2230" stroke="#000" stroke-width="3"/>
+        <circle cx="88" cy="80" r="6" fill="#bbc4d0" stroke="#3a4756" stroke-width="2"/>
+        <line x1="32" y1="80" x2="70" y2="40" stroke="#d33" stroke-width="4"/>
+        <line x1="88" y1="80" x2="70" y2="40" stroke="#d33" stroke-width="4"/>
+        <line x1="32" y1="80" x2="88" y2="80" stroke="#d33" stroke-width="4"/>
+        <polygon points="70,30 80,36 80,46 70,52 60,46 60,36" fill="#3aa3ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="60" y="20" width="20" height="6" fill="#d33"/>
+      `,
+    ],
+  },
+  cloggedDrain: {
+    label: 'clogged drain',
+    tools: ['pliers', 'pump'],
+    stages: [
+      // 0: drain with junk clog
+      `
+        <rect x="6" y="60" width="108" height="50" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <circle cx="60" cy="80" r="22" fill="#1a2230" stroke="#000" stroke-width="3"/>
+        <path d="M40 76 Q50 60 60 74 Q70 60 80 76 Q70 90 60 80 Q50 90 40 76 Z"
+              fill="#7a5328" stroke="#3a4756" stroke-width="2"/>
+        <circle cx="48" cy="72" r="3" fill="#3e9c3e"/>
+        <circle cx="72" cy="78" r="3" fill="#3e9c3e"/>
+      `,
+      // 1: clog removed by pliers
+      `
+        <rect x="6" y="60" width="108" height="50" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <circle cx="60" cy="80" r="22" fill="#1a2230" stroke="#000" stroke-width="3"/>
+        <circle cx="60" cy="80" r="14" fill="#2a3a50" stroke="#1a2230" stroke-width="2"/>
+        <circle cx="56" cy="86" r="2" fill="#3aa3ff" opacity="0.6"/>
+      `,
+      // 2: pumped clean and clear
+      `
+        <rect x="6" y="60" width="108" height="50" fill="#3a4756" stroke="#1a2230" stroke-width="3"/>
+        <circle cx="60" cy="80" r="22" fill="#3aa3ff" stroke="#1f5d99" stroke-width="3"/>
+        <circle cx="60" cy="80" r="14" fill="#7ec0ff" stroke="#1f5d99" stroke-width="2"/>
+        <path d="M50 78 Q60 72 70 78 M50 86 Q60 80 70 86" stroke="#fff" stroke-width="2" fill="none"/>
+      `,
+    ],
+  },
+  brokenWindow: {
+    label: 'broken window',
+    tools: ['scissors', 'tape', 'glue'],
+    stages: [
+      // 0: shattered window
+      `
+        <rect x="10" y="10" width="100" height="100" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="16" y="16" width="88" height="88" fill="#7ec0ff" stroke="#1f5d99" stroke-width="2"/>
+        <path d="M16 16 L60 60 L104 16 M16 104 L60 60 L104 104 M16 60 L104 60 M60 16 L60 104"
+              stroke="#1f5d99" stroke-width="2" fill="none"/>
+        <path d="M40 20 L48 50 L36 80" stroke="#fff" stroke-width="2" fill="none"/>
+      `,
+      // 1: cut to fit (scissors)
+      `
+        <rect x="10" y="10" width="100" height="100" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="16" y="16" width="88" height="88" fill="#7ec0ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="40" y="40" width="40" height="40" fill="#fff8d0" stroke="#3a4756" stroke-width="2" stroke-dasharray="4 2"/>
+      `,
+      // 2: taped
+      `
+        <rect x="10" y="10" width="100" height="100" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="16" y="16" width="88" height="88" fill="#7ec0ff" stroke="#1f5d99" stroke-width="2"/>
+        <rect x="40" y="40" width="40" height="40" fill="#fff8d0" stroke="#3a4756" stroke-width="2"/>
+        <rect x="34" y="56" width="52" height="8" fill="#ffd966" stroke="#c19a30" stroke-width="2"/>
+        <rect x="56" y="34" width="8" height="52" fill="#ffd966" stroke="#c19a30" stroke-width="2"/>
+      `,
+      // 3: glued (sealed clean edge)
+      `
+        <rect x="10" y="10" width="100" height="100" fill="#bbc4d0" stroke="#3a4756" stroke-width="3"/>
+        <rect x="16" y="16" width="88" height="88" fill="#7ec0ff" stroke="#1f5d99" stroke-width="2"/>
+        <path d="M30 30 Q60 24 90 30 Q96 60 90 90 Q60 96 30 90 Q24 60 30 30 Z"
+              fill="#aedaff" stroke="#1f5d99" stroke-width="2"/>
+        <path d="M36 38 L50 32" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      `,
+    ],
+  },
+  wobblyTable: {
+    label: 'wobbly table',
+    tools: ['screwdriver', 'glue', 'hammer'],
+    stages: [
+      // 0: leg falling off
+      `
+        <rect x="10" y="40" width="100" height="12" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="18" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="92" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="50" y="60" width="10" height="44" fill="#a07040" stroke="#3a4756" stroke-width="3" transform="rotate(25 55 82)"/>
+      `,
+      // 1: leg screwed in place
+      `
+        <rect x="10" y="40" width="100" height="12" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="18" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="92" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="55" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <circle cx="60" cy="46" r="3" fill="#bbc4d0" stroke="#3a4756" stroke-width="1"/>
+      `,
+      // 2: joints glued
+      `
+        <rect x="10" y="40" width="100" height="12" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="18" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="92" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="55" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <circle cx="23" cy="52" r="3" fill="#fff58a"/>
+        <circle cx="60" cy="52" r="3" fill="#fff58a"/>
+        <circle cx="97" cy="52" r="3" fill="#fff58a"/>
+      `,
+      // 3: hammered tight & solid
+      `
+        <rect x="10" y="38" width="100" height="14" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <line x1="10" y1="44" x2="110" y2="44" stroke="#7a5328" stroke-width="2"/>
+        <rect x="18" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="92" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <rect x="55" y="52" width="10" height="50" fill="#a07040" stroke="#3a4756" stroke-width="3"/>
+        <ellipse cx="23" cy="52" rx="6" ry="2" fill="#bbc4d0" stroke="#3a4756" stroke-width="1"/>
+        <ellipse cx="60" cy="52" rx="6" ry="2" fill="#bbc4d0" stroke="#3a4756" stroke-width="1"/>
+        <ellipse cx="97" cy="52" rx="6" ry="2" fill="#bbc4d0" stroke="#3a4756" stroke-width="1"/>
+      `,
+    ],
+  },
+  oldFence: {
+    label: 'old fence',
+    tools: ['saw', 'hammer', 'paintbrush'],
+    stages: [
+      // 0: overgrown, broken
+      `
+        <rect x="10" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="34" y="50" width="14" height="60" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="58" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="82" y="40" width="14" height="70" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <path d="M40 40 Q34 20 26 30 L32 36 Q26 26 30 22 L36 32 Z"
+              fill="#3e9c3e" stroke="#1a4a1a" stroke-width="2"/>
+        <path d="M88 30 Q98 14 106 24 L98 30 Q104 22 100 18 L94 26 Z"
+              fill="#3e9c3e" stroke="#1a4a1a" stroke-width="2"/>
+        <rect x="6" y="76" width="100" height="6" fill="#7a5328"/>
+      `,
+      // 1: sawn even
+      `
+        <rect x="10" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="34" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="58" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="82" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="6" y="76" width="100" height="6" fill="#7a5328"/>
+      `,
+      // 2: nailed crossbeam
+      `
+        <rect x="10" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="34" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="58" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="82" y="60" width="14" height="50" fill="#7a5328" stroke="#3a4756" stroke-width="3"/>
+        <rect x="6" y="76" width="100" height="6" fill="#a07040" stroke="#3a4756" stroke-width="2"/>
+        <circle cx="17" cy="79" r="2" fill="#bbc4d0"/>
+        <circle cx="41" cy="79" r="2" fill="#bbc4d0"/>
+        <circle cx="65" cy="79" r="2" fill="#bbc4d0"/>
+        <circle cx="89" cy="79" r="2" fill="#bbc4d0"/>
+      `,
+      // 3: painted clean
+      `
+        <rect x="10" y="60" width="14" height="50" fill="#ffd966" stroke="#c19a30" stroke-width="3"/>
+        <rect x="34" y="60" width="14" height="50" fill="#ffd966" stroke="#c19a30" stroke-width="3"/>
+        <rect x="58" y="60" width="14" height="50" fill="#ffd966" stroke="#c19a30" stroke-width="3"/>
+        <rect x="82" y="60" width="14" height="50" fill="#ffd966" stroke="#c19a30" stroke-width="3"/>
+        <rect x="6" y="76" width="100" height="6" fill="#ffd966" stroke="#c19a30" stroke-width="2"/>
+      `,
+    ],
+  },
 };
 
 // ----- Levels ----------------------------------------------------------------
@@ -670,6 +975,197 @@ export const TOOLBOX_LEVELS = [
       { id: 'j3', kind: 'lamp',        x: 310, y: 140 },
     ],
     trayTools: ['drill', 'glue', 'paintbrush', 'wrench', 'tape', 'bulb', 'hammer', 'saw'] },
+
+  // ===== L26-L30 2-3 jobs, mostly single-step, 6-7 tools =====
+  { name: 'Drip Drip',
+    jobs: [
+      { id: 'j1', kind: 'leakyFaucet', x: 110, y: 130 },
+      { id: 'j2', kind: 'bolt',        x: 260, y: 140 },
+    ],
+    trayTools: ['wrench', 'hammer', 'screwdriver', 'tape', 'pliers', 'pump'] },
+  { name: 'Kitchen Repair',
+    jobs: [
+      { id: 'j1', kind: 'leakyFaucet', x: 90,  y: 140 },
+      { id: 'j2', kind: 'lamp',        x: 200, y: 140 },
+      { id: 'j3', kind: 'screw',       x: 300, y: 140 },
+    ],
+    trayTools: ['wrench', 'bulb', 'screwdriver', 'hammer', 'tape', 'paintbrush', 'glue'] },
+  { name: 'Backyard Job',
+    jobs: [
+      { id: 'j1', kind: 'branch', x: 90,  y: 130 },
+      { id: 'j2', kind: 'tire',   x: 220, y: 140 },
+      { id: 'j3', kind: 'wall',   x: 310, y: 140 },
+    ],
+    trayTools: ['saw', 'pump', 'paintbrush', 'hammer', 'wrench', 'drill'] },
+  { name: 'Three Holes',
+    jobs: [
+      { id: 'j1', kind: 'hole', x: 80,  y: 140 },
+      { id: 'j2', kind: 'hole', x: 200, y: 140 },
+      { id: 'j3', kind: 'hole', x: 300, y: 140 },
+    ],
+    trayTools: ['drill', 'hammer', 'wrench', 'screwdriver', 'glue', 'pliers'] },
+  { name: 'Tidy Up',
+    jobs: [
+      { id: 'j1', kind: 'paper',  x: 90,  y: 130 },
+      { id: 'j2', kind: 'poster', x: 220, y: 130 },
+      { id: 'j3', kind: 'vase',   x: 310, y: 140 },
+    ],
+    trayTools: ['scissors', 'tape', 'glue', 'paintbrush', 'pliers', 'hammer', 'wrench'] },
+
+  // ===== L31-L35 2-3 jobs with multi-step fixes, 7 tools =====
+  { name: 'Bathroom Day',
+    jobs: [
+      { id: 'j1', kind: 'cloggedDrain', x: 100, y: 140 },
+      { id: 'j2', kind: 'leakyFaucet',  x: 260, y: 130 },
+    ],
+    trayTools: ['pliers', 'pump', 'wrench', 'tape', 'hammer', 'screwdriver', 'glue'] },
+  { name: 'Stuck Window',
+    jobs: [
+      { id: 'j1', kind: 'brokenWindow', x: 110, y: 140 },
+      { id: 'j2', kind: 'nail',         x: 270, y: 130 },
+    ],
+    trayTools: ['scissors', 'tape', 'glue', 'hammer', 'paintbrush', 'wrench', 'pliers'] },
+  { name: 'Wobble Stop',
+    jobs: [
+      { id: 'j1', kind: 'wobblyTable', x: 100, y: 140 },
+      { id: 'j2', kind: 'screw',       x: 270, y: 130 },
+    ],
+    trayTools: ['screwdriver', 'glue', 'hammer', 'wrench', 'tape', 'saw', 'paintbrush'] },
+  { name: 'Loose Tiles',
+    jobs: [
+      { id: 'j1', kind: 'looseTile', x: 100, y: 140 },
+      { id: 'j2', kind: 'tire',      x: 270, y: 140 },
+    ],
+    trayTools: ['hammer', 'glue', 'paintbrush', 'pump', 'wrench', 'pliers', 'tape'] },
+  { name: 'Old Radio',
+    jobs: [
+      { id: 'j1', kind: 'brokenRadio', x: 100, y: 130 },
+      { id: 'j2', kind: 'bolt',        x: 270, y: 140 },
+    ],
+    trayTools: ['screwdriver', 'wrench', 'bulb', 'hammer', 'tape', 'glue', 'pliers'] },
+
+  // ===== L36-L40 3-4 jobs, mix of 1/2/3-step fixes, 8 tools =====
+  { name: 'Garage Saturday',
+    jobs: [
+      { id: 'j1', kind: 'rustyBike',   x: 90,  y: 140 },
+      { id: 'j2', kind: 'leakyFaucet', x: 230, y: 130 },
+      { id: 'j3', kind: 'bolt',        x: 320, y: 140 },
+    ],
+    trayTools: ['wrench', 'paintbrush', 'pump', 'tape', 'hammer', 'screwdriver', 'glue', 'pliers'] },
+  { name: 'Window & Drain',
+    jobs: [
+      { id: 'j1', kind: 'brokenWindow', x: 90,  y: 140 },
+      { id: 'j2', kind: 'cloggedDrain', x: 220, y: 140 },
+      { id: 'j3', kind: 'screw',        x: 320, y: 140 },
+    ],
+    trayTools: ['scissors', 'tape', 'glue', 'pliers', 'pump', 'screwdriver', 'wrench', 'hammer'] },
+  { name: 'Living Room',
+    jobs: [
+      { id: 'j1', kind: 'wobblyTable', x: 80,  y: 140 },
+      { id: 'j2', kind: 'lamp',        x: 200, y: 130 },
+      { id: 'j3', kind: 'vase',        x: 290, y: 140 },
+      { id: 'j4', kind: 'poster',      x: 340, y: 140 },
+    ],
+    trayTools: ['screwdriver', 'glue', 'hammer', 'bulb', 'tape', 'paintbrush', 'scissors', 'wrench'] },
+  { name: 'Workshop Mix',
+    jobs: [
+      { id: 'j1', kind: 'looseTile',  x: 80,  y: 140 },
+      { id: 'j2', kind: 'branch',     x: 200, y: 140 },
+      { id: 'j3', kind: 'stuckNail',  x: 290, y: 140 },
+      { id: 'j4', kind: 'screw',      x: 340, y: 140 },
+    ],
+    trayTools: ['hammer', 'glue', 'paintbrush', 'saw', 'pliers', 'screwdriver', 'wrench', 'tape'] },
+  { name: 'Yard & Roof',
+    jobs: [
+      { id: 'j1', kind: 'oldFence',  x: 90,  y: 140 },
+      { id: 'j2', kind: 'tire',      x: 220, y: 140 },
+      { id: 'j3', kind: 'nail',      x: 320, y: 140 },
+    ],
+    trayTools: ['saw', 'hammer', 'paintbrush', 'pump', 'wrench', 'pliers', 'glue', 'drill'] },
+
+  // ===== L41-L45 3-4 jobs, mostly multi-step, 9 tools =====
+  { name: 'Big Fix Day',
+    jobs: [
+      { id: 'j1', kind: 'rustyBike',   x: 90,  y: 140 },
+      { id: 'j2', kind: 'brokenRadio', x: 230, y: 140 },
+      { id: 'j3', kind: 'leakyFaucet', x: 330, y: 140 },
+    ],
+    trayTools: ['wrench', 'paintbrush', 'pump', 'screwdriver', 'bulb', 'tape', 'hammer', 'glue', 'pliers'] },
+  { name: 'Triple Trouble',
+    jobs: [
+      { id: 'j1', kind: 'looseTile',    x: 90,  y: 140 },
+      { id: 'j2', kind: 'brokenWindow', x: 220, y: 140 },
+      { id: 'j3', kind: 'cloggedDrain', x: 330, y: 140 },
+    ],
+    trayTools: ['hammer', 'glue', 'paintbrush', 'scissors', 'tape', 'pliers', 'pump', 'wrench', 'screwdriver'] },
+  { name: 'Saturday Sweat',
+    jobs: [
+      { id: 'j1', kind: 'oldFence',    x: 90,  y: 140 },
+      { id: 'j2', kind: 'wobblyTable', x: 220, y: 140 },
+      { id: 'j3', kind: 'loosePipe',   x: 330, y: 140 },
+    ],
+    trayTools: ['saw', 'hammer', 'paintbrush', 'screwdriver', 'glue', 'wrench', 'tape', 'pump', 'pliers'] },
+  { name: 'House Patrol',
+    jobs: [
+      { id: 'j1', kind: 'crackedWall', x: 80,  y: 140 },
+      { id: 'j2', kind: 'looseTile',   x: 200, y: 140 },
+      { id: 'j3', kind: 'lamp',        x: 290, y: 140 },
+      { id: 'j4', kind: 'bolt',        x: 340, y: 140 },
+    ],
+    trayTools: ['drill', 'glue', 'paintbrush', 'hammer', 'bulb', 'wrench', 'tape', 'screwdriver', 'pliers'] },
+  { name: 'Repair Spree',
+    jobs: [
+      { id: 'j1', kind: 'brokenChair',  x: 80,  y: 140 },
+      { id: 'j2', kind: 'brokenRadio',  x: 200, y: 140 },
+      { id: 'j3', kind: 'sawAndSand',   x: 290, y: 140 },
+      { id: 'j4', kind: 'tire',         x: 340, y: 140 },
+    ],
+    trayTools: ['glue', 'screwdriver', 'wrench', 'bulb', 'saw', 'paintbrush', 'pump', 'hammer', 'tape'] },
+
+  // ===== L46-L50 4-5 jobs, complex sequences, all 12 tools =====
+  { name: 'Whole House',
+    jobs: [
+      { id: 'j1', kind: 'rustyBike',    x: 70,  y: 140 },
+      { id: 'j2', kind: 'brokenWindow', x: 180, y: 140 },
+      { id: 'j3', kind: 'leakyFaucet',  x: 270, y: 140 },
+      { id: 'j4', kind: 'lamp',         x: 330, y: 140 },
+    ],
+    trayTools: ['wrench','screwdriver','hammer','saw','pump','paintbrush','drill','pliers','glue','scissors','tape','bulb'] },
+  { name: 'Total Reno',
+    jobs: [
+      { id: 'j1', kind: 'crackedWall',  x: 70,  y: 140 },
+      { id: 'j2', kind: 'looseTile',    x: 180, y: 140 },
+      { id: 'j3', kind: 'wobblyTable',  x: 270, y: 140 },
+      { id: 'j4', kind: 'cloggedDrain', x: 330, y: 140 },
+    ],
+    trayTools: ['wrench','screwdriver','hammer','saw','pump','paintbrush','drill','pliers','glue','scissors','tape','bulb'] },
+  { name: 'Five Alarm',
+    jobs: [
+      { id: 'j1', kind: 'oldFence',     x: 60,  y: 140 },
+      { id: 'j2', kind: 'brokenRadio',  x: 150, y: 140 },
+      { id: 'j3', kind: 'loosePipe',    x: 230, y: 140 },
+      { id: 'j4', kind: 'vase',         x: 300, y: 140 },
+      { id: 'j5', kind: 'lamp',         x: 340, y: 140 },
+    ],
+    trayTools: ['wrench','screwdriver','hammer','saw','pump','paintbrush','drill','pliers','glue','scissors','tape','bulb'] },
+  { name: 'Fix Marathon',
+    jobs: [
+      { id: 'j1', kind: 'brokenChair',  x: 60,  y: 140 },
+      { id: 'j2', kind: 'rustyBike',    x: 160, y: 140 },
+      { id: 'j3', kind: 'brokenWindow', x: 250, y: 140 },
+      { id: 'j4', kind: 'sawAndSand',   x: 320, y: 140 },
+      { id: 'j5', kind: 'paper',        x: 350, y: 140 },
+    ],
+    trayTools: ['wrench','screwdriver','hammer','saw','pump','paintbrush','drill','pliers','glue','scissors','tape','bulb'] },
+  { name: 'Grand Master',
+    jobs: [
+      { id: 'j1', kind: 'oldFence',     x: 50,  y: 140 },
+      { id: 'j2', kind: 'looseTile',    x: 140, y: 140 },
+      { id: 'j3', kind: 'brokenRadio',  x: 220, y: 140 },
+      { id: 'j4', kind: 'wobblyTable',  x: 290, y: 140 },
+      { id: 'j5', kind: 'crackedWall',  x: 340, y: 140 },
+    ],
+    trayTools: ['wrench','screwdriver','hammer','saw','pump','paintbrush','drill','pliers','glue','scissors','tape','bulb'] },
 ];
 
 // ----- Helpers ---------------------------------------------------------------

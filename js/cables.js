@@ -106,6 +106,44 @@ export const CABLES_LEVELS = [
   { name: 'Mega Tangle',    n: 8, perm: [7, 4, 1, 6, 2, 5, 0, 3] },
   { name: 'Cable Knot',     n: 8, perm: [3, 6, 0, 7, 2, 5, 1, 4] },
   { name: 'GRAND TANGLE',   n: 9, perm: [8, 5, 2, 7, 0, 4, 1, 6, 3] },
+
+  // ---- L26-L50: expansion levels. Higher cable counts, dense tangles, and
+  // permutations chosen so most/all cables must be moved to resolve. ----
+
+  // L26-L30 : 7-8 cables, moderate crossings.
+  { name: 'Spaghetti Junction', n: 7,  perm: [2, 5, 0, 6, 1, 4, 3] },
+  { name: 'Switchback Seven',   n: 7,  perm: [4, 1, 6, 0, 5, 2, 3] },
+  { name: 'Octo Snarl',         n: 8,  perm: [2, 5, 0, 7, 1, 6, 3, 4] },
+  { name: 'Eight Eddies',       n: 8,  perm: [4, 1, 6, 3, 0, 7, 2, 5] },
+  { name: 'Reverse Weave',      n: 8,  perm: [5, 2, 7, 0, 4, 1, 6, 3] },
+
+  // L31-L35 : 8-9 cables, more crossings.
+  { name: 'Maximum Eight',      n: 8,  perm: [7, 3, 5, 1, 6, 2, 4, 0] },
+  { name: 'Nine Lives',         n: 9,  perm: [3, 6, 1, 8, 0, 5, 7, 2, 4] },
+  { name: 'Cable Cyclone',      n: 9,  perm: [5, 2, 7, 0, 8, 3, 1, 6, 4] },
+  { name: 'Wire Whirlpool',     n: 9,  perm: [8, 5, 2, 7, 1, 6, 0, 4, 3] },
+  { name: 'Nine Tail Knot',     n: 9,  perm: [4, 8, 1, 6, 0, 7, 3, 5, 2] },
+
+  // L36-L40 : 9-10 cables, dense tangle.
+  { name: 'Full Reverse Nine',  n: 9,  perm: [8, 6, 4, 2, 0, 7, 5, 3, 1] },
+  { name: 'Ten Tendrils',       n: 10, perm: [3, 7, 1, 9, 0, 6, 2, 8, 4, 5] },
+  { name: 'Decimal Disaster',   n: 10, perm: [5, 9, 2, 7, 0, 8, 1, 6, 3, 4] },
+  { name: 'Ten Tornado',        n: 10, perm: [8, 5, 2, 9, 1, 6, 0, 7, 3, 4] },
+  { name: 'Ten Twister',        n: 10, perm: [9, 6, 3, 0, 8, 5, 2, 7, 4, 1] },
+
+  // L41-L45 : 10-11 cables, harder permutations.
+  { name: 'Perfect Ten Mirror', n: 10, perm: [9, 7, 5, 3, 1, 8, 6, 4, 2, 0] },
+  { name: 'Eleven Edge',        n: 11, perm: [5, 9, 2, 7, 0, 10, 3, 8, 1, 6, 4] },
+  { name: 'Tangle Eleven',      n: 11, perm: [8, 3, 10, 1, 6, 2, 9, 0, 7, 4, 5] },
+  { name: 'Wire Hurricane',     n: 11, perm: [10, 6, 2, 8, 4, 0, 9, 5, 1, 7, 3] },
+  { name: 'Eleventh Hour',      n: 11, perm: [4, 8, 1, 10, 5, 0, 9, 2, 7, 3, 6] },
+
+  // L46-L50 : 11-12 cables, the wildest tangles.
+  { name: 'Eleven Mirror',      n: 11, perm: [10, 8, 6, 4, 2, 0, 9, 7, 5, 3, 1] },
+  { name: 'Dozen Dilemma',      n: 12, perm: [5, 10, 2, 8, 0, 11, 3, 9, 1, 7, 4, 6] },
+  { name: 'Twelve Tempest',     n: 12, perm: [11, 7, 3, 9, 1, 8, 0, 10, 4, 6, 2, 5] },
+  { name: 'Cable Catastrophe',  n: 12, perm: [8, 11, 4, 1, 9, 6, 0, 10, 3, 7, 2, 5] },
+  { name: 'ULTIMATE TANGLE',    n: 12, perm: [11, 9, 7, 5, 3, 1, 10, 8, 6, 4, 2, 0] },
 ];
 
 // Sanity-check at module load: every level should be a valid permutation with

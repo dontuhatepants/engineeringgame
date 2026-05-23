@@ -9,9 +9,29 @@ import { renderCablesLevel, CABLES_LEVELS } from './cables.js';
 import { renderLegoLevel, LEGO_LEVELS } from './lego.js';
 import { renderToolboxLevel, TOOLBOX_LEVELS } from './toolbox.js';
 import { renderBridgeLevel, BRIDGE_LEVELS } from './bridge.js';
+import { renderPitfallLevel, PITFALL_LEVELS } from './pitfall.js';
 import { sfx, setMuted, isMuted } from './sound.js';
 
 const app = document.getElementById('app');
+
+// Drag-orphan sweep: many mechanics lift the dragged element to document.body
+// while drag is active so it can follow the pointer across containers. If the
+// user navigates (back button, win → next level) before pointerup fires, those
+// elements survive the next innerHTML swap on #app and visibly linger across
+// menus. Run this before every navigation to scrub any stragglers.
+function sweepDragOrphans() {
+  const selectors = [
+    '.robot-part', '.gear-part', '.lego-tray-block', '.tb-tool',
+    '.bridge-piece.dragging', '.marble-ghost', '.lego-ghost',
+  ];
+  document.body.querySelectorAll(selectors.join(',')).forEach(el => {
+    // Only remove if it's a direct (or near-direct) child of body — i.e.
+    // it was lifted out of its container during drag. Anything still nested
+    // inside #app is part of the active level and should be left alone.
+    if (el.closest('#app')) return;
+    el.remove();
+  });
+}
 
 const MECHANICS = {
   pipes:    { name: 'Pipes',    levels: PIPES_LEVELS,    render: renderPipesLevel,    icon: pipesIcon },
@@ -23,8 +43,9 @@ const MECHANICS = {
   lego:     { name: 'Blocks',   levels: LEGO_LEVELS,     render: renderLegoLevel,     icon: legoIcon },
   toolbox:  { name: 'Toolbox',  levels: TOOLBOX_LEVELS,  render: renderToolboxLevel,  icon: toolboxIcon },
   bridge:   { name: 'Bridge',   levels: BRIDGE_LEVELS,   render: renderBridgeLevel,   icon: bridgeIcon },
+  pitfall:  { name: 'Jungle',   levels: PITFALL_LEVELS,  render: renderPitfallLevel,  icon: pitfallIcon },
 };
-const MECHANIC_ORDER = ['pipes', 'robot', 'circuits', 'gears', 'marble', 'cables', 'lego', 'toolbox', 'bridge'];
+const MECHANIC_ORDER = ['pipes', 'robot', 'circuits', 'gears', 'marble', 'cables', 'lego', 'toolbox', 'bridge', 'pitfall'];
 
 // ---- Progress (localStorage) ----
 const SAVE_KEY = 'fixinggame_v1';
@@ -63,6 +84,7 @@ function toggleMute() {
 
 // ---- Hub ----
 function renderHub() {
+  sweepDragOrphans();
   const cards = MECHANIC_ORDER.map((key) => {
     const m = MECHANICS[key];
     return `
@@ -231,6 +253,29 @@ function toolboxIcon() {
     </svg>
   `;
 }
+function pitfallIcon() {
+  return `
+    <svg viewBox="0 0 100 100" width="96" height="96">
+      <!-- jungle canopy -->
+      <ellipse cx="20" cy="18" rx="18" ry="12" fill="#2d6b3a" stroke="#143018" stroke-width="2"/>
+      <ellipse cx="50" cy="14" rx="20" ry="12" fill="#2d6b3a" stroke="#143018" stroke-width="2"/>
+      <ellipse cx="82" cy="18" rx="18" ry="12" fill="#2d6b3a" stroke="#143018" stroke-width="2"/>
+      <!-- vine -->
+      <path d="M 50 22 Q 52 40 50 56" stroke="#5a3a1f" stroke-width="3" fill="none"/>
+      <ellipse cx="48" cy="48" rx="4" ry="2" fill="#3e9c3e"/>
+      <!-- ground -->
+      <rect x="0" y="74" width="100" height="26" fill="#7a5a30"/>
+      <rect x="0" y="74" width="100" height="4" fill="#3e9c3e"/>
+      <!-- pit -->
+      <rect x="55" y="78" width="20" height="22" fill="#1a1208"/>
+      <!-- character mid-jump -->
+      <circle cx="38" cy="58" r="6" fill="#ffd966" stroke="#3a2e0f" stroke-width="2"/>
+      <rect x="33" y="62" width="10" height="12" fill="#a04a2a" stroke="#3a2008" stroke-width="2"/>
+      <rect x="33" y="72" width="4" height="6" fill="#5a3a1f" stroke="#3a2008" stroke-width="2"/>
+      <rect x="39" y="72" width="4" height="6" fill="#5a3a1f" stroke="#3a2008" stroke-width="2"/>
+    </svg>
+  `;
+}
 function bridgeIcon() {
   return `
     <svg viewBox="0 0 100 100" width="96" height="96">
@@ -254,6 +299,7 @@ function bridgeIcon() {
 
 // ---- Level Select (shared across mechanics) ----
 function renderLevelSelect(mechanicKey) {
+  sweepDragOrphans();
   const m = MECHANICS[mechanicKey];
   const cards = m.levels.map((lvl, i) => {
     const completed = isComplete(mechanicKey, i);
@@ -288,6 +334,7 @@ function renderLevelSelect(mechanicKey) {
 
 // ---- Game (delegates to the mechanic's renderer) ----
 function renderGame(mechanicKey, levelIdx) {
+  sweepDragOrphans();
   const m = MECHANICS[mechanicKey];
   m.render(app, levelIdx, {
     onBack: () => renderLevelSelect(mechanicKey),

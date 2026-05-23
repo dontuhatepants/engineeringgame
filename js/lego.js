@@ -489,6 +489,387 @@ export const LEGO_LEVELS = [
       { size: [1, 1], color: 'red',       pos: [8, 9] }, // dock light
     ],
   },
+
+  // ============== DINOSAURS (L21-L25) — silhouette, decoys ==============
+  {
+    name: 'T-Rex', theme: 'dinosaurs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 11, finishAnim: 'wagTail',
+    steps: [
+      { size: [1, 3], color: 'green',     pos: [5, 7] }, // back leg
+      { size: [1, 3], color: 'green',     pos: [8, 7] }, // front leg
+      { size: [2, 1], color: 'darkGrey',  pos: [5, 10] }, // foot
+      { size: [2, 1], color: 'darkGrey',  pos: [8, 10] }, // foot
+      { size: [8, 2], color: 'green',     pos: [3, 5] }, // body
+      { size: [4, 1], color: 'green',     pos: [0, 6] }, // tail base
+      { size: [2, 1], color: 'green',     pos: [0, 7] }, // tail tip
+      { size: [2, 3], color: 'green',     pos: [10, 3] }, // neck
+      { size: [3, 2], color: 'green',     pos: [10, 1] }, // head
+      { size: [1, 1], color: 'white',     pos: [11, 2] }, // eye
+      { size: [1, 1], color: 'red',       pos: [12, 3] }, // mouth
+      { size: [1, 1], color: 'green',     pos: [9, 5] }, // tiny arm
+    ],
+  },
+  {
+    name: 'Stegosaurus', theme: 'dinosaurs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 9, finishAnim: 'wagTail',
+    steps: [
+      { size: [1, 2], color: 'green',     pos: [3, 6] }, // back leg
+      { size: [1, 2], color: 'green',     pos: [5, 6] }, // back leg 2
+      { size: [1, 2], color: 'green',     pos: [8, 6] }, // front leg
+      { size: [1, 2], color: 'green',     pos: [10, 6] }, // front leg 2
+      { size: [9, 2], color: 'green',     pos: [2, 4] }, // body
+      { size: [3, 1], color: 'green',     pos: [0, 5] }, // tail
+      { size: [2, 2], color: 'green',     pos: [11, 3] }, // head
+      { size: [1, 1], color: 'white',     pos: [12, 4] }, // eye
+      { size: [1, 2], color: 'orange',    pos: [4, 2] }, // plate
+      { size: [1, 2], color: 'orange',    pos: [6, 2] }, // plate
+      { size: [1, 2], color: 'orange',    pos: [8, 2] }, // plate
+      { size: [1, 1], color: 'red',       pos: [0, 6] }, // tail spike
+    ],
+  },
+  {
+    name: 'Triceratops', theme: 'dinosaurs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 9, finishAnim: 'wagTail',
+    steps: [
+      { size: [1, 2], color: 'green',     pos: [3, 6] }, // back leg
+      { size: [1, 2], color: 'green',     pos: [5, 6] }, // back leg 2
+      { size: [1, 2], color: 'green',     pos: [7, 6] }, // front leg
+      { size: [1, 2], color: 'green',     pos: [9, 6] }, // front leg 2
+      { size: [8, 2], color: 'green',     pos: [2, 4] }, // body
+      { size: [2, 1], color: 'green',     pos: [0, 5] }, // tail
+      { size: [3, 3], color: 'green',     pos: [10, 3] }, // head + frill
+      { size: [1, 2], color: 'green',     pos: [9, 4] }, // jaw
+      { size: [1, 1], color: 'white',     pos: [11, 5] }, // eye
+      { size: [1, 1], color: 'lightGrey', pos: [12, 2] }, // horn
+      { size: [1, 1], color: 'lightGrey', pos: [10, 2] }, // horn
+      { size: [1, 1], color: 'lightGrey', pos: [12, 6] }, // nose horn
+    ],
+  },
+  {
+    name: 'Brachiosaurus', theme: 'dinosaurs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 13, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [1, 3], color: 'green',     pos: [3, 9] }, // back leg
+      { size: [1, 3], color: 'green',     pos: [5, 9] }, // back leg 2
+      { size: [1, 3], color: 'green',     pos: [7, 9] }, // front leg
+      { size: [1, 3], color: 'green',     pos: [9, 9] }, // front leg 2
+      { size: [9, 2], color: 'green',     pos: [2, 7] }, // body
+      { size: [3, 1], color: 'green',     pos: [0, 8] }, // tail
+      { size: [2, 5], color: 'green',     pos: [9, 2] }, // long neck
+      { size: [3, 2], color: 'green',     pos: [10, 0] }, // head
+      { size: [1, 1], color: 'white',     pos: [11, 1] }, // eye
+      { size: [1, 1], color: 'black',     pos: [12, 1] }, // nostril
+      { size: [2, 1], color: 'darkGrey',  pos: [3, 12] }, // foot
+      { size: [2, 1], color: 'darkGrey',  pos: [7, 12] }, // foot
+    ],
+  },
+  {
+    name: 'Pterodactyl', theme: 'dinosaurs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 8, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [3, 2], color: 'brown',     pos: [5, 3] }, // body
+      { size: [2, 2], color: 'brown',     pos: [8, 2] }, // head
+      { size: [2, 1], color: 'yellow',    pos: [10, 3] }, // beak
+      { size: [1, 1], color: 'white',     pos: [8, 2] }, // eye
+      { size: [1, 1], color: 'red',       pos: [8, 1] }, // crest
+      { size: [4, 1], color: 'brown',     pos: [1, 2] }, // left wing inner
+      { size: [3, 1], color: 'brown',     pos: [0, 1] }, // left wing outer
+      { size: [4, 1], color: 'brown',     pos: [8, 5] }, // right wing inner (lower)
+      { size: [3, 1], color: 'brown',     pos: [10, 6] }, // right wing outer
+      { size: [1, 2], color: 'brown',     pos: [6, 5] }, // tail
+      { size: [1, 1], color: 'darkGrey',  pos: [6, 7] }, // tail tip
+    ],
+  },
+
+  // ============== UNDERWATER (L26-L30) — silhouette, decoys ==============
+  {
+    name: 'Shark', theme: 'underwater', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 7, finishAnim: 'wagTail',
+    steps: [
+      { size: [7, 3], color: 'lightGrey', pos: [3, 2] }, // body
+      { size: [2, 2], color: 'lightGrey', pos: [10, 2] }, // head taper
+      { size: [2, 1], color: 'white',     pos: [10, 4] }, // belly
+      { size: [3, 1], color: 'white',     pos: [4, 5] }, // belly mid
+      { size: [3, 1], color: 'lightGrey', pos: [0, 1] }, // tail upper
+      { size: [3, 1], color: 'lightGrey', pos: [0, 4] }, // tail lower
+      { size: [1, 1], color: 'lightGrey', pos: [3, 5] }, // bottom fin
+      { size: [2, 1], color: 'lightGrey', pos: [6, 1] }, // top fin
+      { size: [1, 1], color: 'black',     pos: [11, 3] }, // eye
+      { size: [3, 1], color: 'white',     pos: [9, 4] }, // teeth
+    ],
+  },
+  {
+    name: 'Octopus', theme: 'underwater', difficulty: 'silhouette', decoys: 3,
+    modelW: 11, modelH: 10, finishAnim: 'wagTail',
+    steps: [
+      { size: [5, 3], color: 'pink',      pos: [3, 1] }, // head/body
+      { size: [3, 1], color: 'pink',      pos: [4, 0] }, // top of head
+      { size: [3, 1], color: 'pink',      pos: [4, 4] }, // base of head
+      { size: [1, 1], color: 'white',     pos: [4, 2] }, // eye
+      { size: [1, 1], color: 'white',     pos: [6, 2] }, // eye
+      { size: [1, 1], color: 'black',     pos: [4, 2] }, // pupil
+      { size: [1, 4], color: 'pink',      pos: [1, 5] }, // tentacle
+      { size: [1, 5], color: 'pink',      pos: [3, 5] }, // tentacle
+      { size: [1, 5], color: 'pink',      pos: [5, 5] }, // tentacle
+      { size: [1, 5], color: 'pink',      pos: [7, 5] }, // tentacle
+      { size: [1, 4], color: 'pink',      pos: [9, 5] }, // tentacle
+      { size: [1, 1], color: 'pink',      pos: [0, 8] }, // curl
+      { size: [1, 1], color: 'pink',      pos: [10, 8] }, // curl
+    ],
+  },
+  {
+    name: 'Sub', theme: 'underwater', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 8, finishAnim: 'driveRight',
+    steps: [
+      { size: [9, 3], color: 'yellow',    pos: [2, 3] }, // hull
+      { size: [2, 1], color: 'yellow',    pos: [1, 4] }, // tail
+      { size: [2, 1], color: 'yellow',    pos: [11, 4] }, // nose
+      { size: [3, 2], color: 'yellow',    pos: [5, 1] }, // tower
+      { size: [2, 1], color: 'lightBlue', pos: [5, 1] }, // tower window
+      { size: [1, 1], color: 'red',       pos: [6, 0] }, // periscope
+      { size: [1, 1], color: 'lightBlue', pos: [4, 4] }, // porthole
+      { size: [1, 1], color: 'lightBlue', pos: [7, 4] }, // porthole
+      { size: [1, 1], color: 'lightBlue', pos: [9, 4] }, // porthole
+      { size: [3, 1], color: 'darkGrey',  pos: [3, 6] }, // bottom fin
+      { size: [1, 1], color: 'lightGrey', pos: [0, 4] }, // propeller
+    ],
+  },
+  {
+    name: 'Whale', theme: 'underwater', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 7, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [8, 3], color: 'blue',      pos: [3, 2] }, // body
+      { size: [2, 1], color: 'blue',      pos: [2, 3] }, // body taper left
+      { size: [2, 1], color: 'blue',      pos: [11, 3] }, // head taper
+      { size: [3, 1], color: 'blue',      pos: [0, 2] }, // tail upper
+      { size: [3, 1], color: 'blue',      pos: [0, 4] }, // tail lower
+      { size: [7, 1], color: 'lightBlue', pos: [4, 5] }, // belly
+      { size: [1, 1], color: 'white',     pos: [11, 3] }, // eye
+      { size: [1, 1], color: 'black',     pos: [12, 3] }, // mouth
+      { size: [2, 1], color: 'blue',      pos: [6, 1] }, // top fin
+      { size: [1, 2], color: 'lightBlue', pos: [6, 0] }, // water spout
+      { size: [1, 1], color: 'lightBlue', pos: [7, 0] }, // spout droplet
+    ],
+  },
+  {
+    name: 'Crab', theme: 'underwater', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 8, finishAnim: 'wagTail',
+    steps: [
+      { size: [7, 3], color: 'red',       pos: [3, 3] }, // body
+      { size: [5, 1], color: 'red',       pos: [4, 2] }, // body top
+      { size: [1, 1], color: 'white',     pos: [5, 2] }, // eye
+      { size: [1, 1], color: 'white',     pos: [7, 2] }, // eye
+      { size: [1, 1], color: 'red',       pos: [5, 1] }, // eye stalk
+      { size: [1, 1], color: 'red',       pos: [7, 1] }, // eye stalk
+      { size: [2, 2], color: 'red',       pos: [0, 3] }, // left claw
+      { size: [2, 2], color: 'red',       pos: [11, 3] }, // right claw
+      { size: [1, 2], color: 'red',       pos: [2, 6] }, // leg
+      { size: [1, 2], color: 'red',       pos: [4, 6] }, // leg
+      { size: [1, 2], color: 'red',       pos: [8, 6] }, // leg
+      { size: [1, 2], color: 'red',       pos: [10, 6] }, // leg
+    ],
+  },
+
+  // ============== ROBOTS / MECHS (L31-L35) — silhouette, decoys ==============
+  {
+    name: 'Mech-Warrior', theme: 'mechs', difficulty: 'silhouette', decoys: 3,
+    modelW: 10, modelH: 13, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [4, 3], color: 'darkGrey',  pos: [3, 1] }, // head
+      { size: [1, 1], color: 'red',       pos: [4, 2] }, // eye
+      { size: [1, 1], color: 'red',       pos: [5, 2] }, // eye
+      { size: [1, 1], color: 'yellow',    pos: [3, 0] }, // antenna
+      { size: [6, 4], color: 'lightGrey', pos: [2, 4] }, // torso
+      { size: [2, 1], color: 'red',       pos: [4, 5] }, // chest plate
+      { size: [1, 4], color: 'darkGrey',  pos: [0, 4] }, // left arm
+      { size: [1, 4], color: 'darkGrey',  pos: [9, 4] }, // right arm
+      { size: [2, 1], color: 'orange',    pos: [0, 8] }, // left fist (gun)
+      { size: [2, 1], color: 'orange',    pos: [8, 8] }, // right fist (gun)
+      { size: [2, 4], color: 'lightGrey', pos: [2, 8] }, // left leg
+      { size: [2, 4], color: 'lightGrey', pos: [6, 8] }, // right leg
+      { size: [3, 1], color: 'darkGrey',  pos: [1, 12] }, // left foot
+      { size: [3, 1], color: 'darkGrey',  pos: [6, 12] }, // right foot
+    ],
+  },
+  {
+    name: 'Mech-Tank', theme: 'mechs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 9, finishAnim: 'driveRight',
+    steps: [
+      { size: [11, 3], color: 'green',    pos: [1, 4] }, // body
+      { size: [11, 1], color: 'darkGrey', pos: [1, 7] }, // tread base
+      { size: [2, 1], color: 'black',     pos: [1, 8] }, // wheel
+      { size: [2, 1], color: 'black',     pos: [5, 8] }, // wheel
+      { size: [2, 1], color: 'black',     pos: [10, 8] }, // wheel
+      { size: [5, 2], color: 'green',     pos: [3, 2] }, // turret
+      { size: [4, 1], color: 'darkGrey',  pos: [9, 3] }, // gun barrel
+      { size: [1, 1], color: 'red',       pos: [4, 2] }, // hatch light
+      { size: [1, 1], color: 'lightBlue', pos: [5, 2] }, // scope
+      { size: [2, 1], color: 'green',     pos: [4, 1] }, // top hatch
+      { size: [1, 1], color: 'yellow',    pos: [12, 3] }, // muzzle
+    ],
+  },
+  {
+    name: 'Mech-Bird', theme: 'mechs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 8, finishAnim: 'liftOff',
+    steps: [
+      { size: [5, 2], color: 'lightGrey', pos: [4, 3] }, // body
+      { size: [2, 2], color: 'lightGrey', pos: [9, 2] }, // head
+      { size: [2, 1], color: 'yellow',    pos: [11, 3] }, // beak
+      { size: [1, 1], color: 'red',       pos: [9, 2] }, // eye
+      { size: [4, 1], color: 'darkGrey',  pos: [0, 2] }, // left wing outer
+      { size: [3, 1], color: 'lightGrey', pos: [1, 3] }, // left wing inner
+      { size: [4, 1], color: 'darkGrey',  pos: [5, 1] }, // top wing strut
+      { size: [3, 1], color: 'lightGrey', pos: [3, 5] }, // tail
+      { size: [1, 2], color: 'darkGrey',  pos: [5, 5] }, // leg
+      { size: [1, 2], color: 'darkGrey',  pos: [7, 5] }, // leg
+      { size: [2, 1], color: 'orange',    pos: [4, 7] }, // foot/jet
+      { size: [2, 1], color: 'orange',    pos: [7, 7] }, // foot/jet
+    ],
+  },
+  {
+    name: 'Mech-Spider', theme: 'mechs', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 9, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [5, 3], color: 'darkGrey',  pos: [4, 3] }, // body
+      { size: [3, 1], color: 'lightGrey', pos: [5, 2] }, // dome top
+      { size: [1, 1], color: 'red',       pos: [5, 3] }, // eye
+      { size: [1, 1], color: 'red',       pos: [7, 3] }, // eye
+      { size: [3, 1], color: 'lightGrey', pos: [5, 6] }, // belly
+      { size: [1, 3], color: 'darkGrey',  pos: [2, 1] }, // upper-left leg
+      { size: [2, 1], color: 'darkGrey',  pos: [0, 3] }, // leg foot
+      { size: [1, 3], color: 'darkGrey',  pos: [10, 1] }, // upper-right leg
+      { size: [2, 1], color: 'darkGrey',  pos: [11, 3] }, // leg foot
+      { size: [1, 3], color: 'darkGrey',  pos: [2, 6] }, // lower-left leg
+      { size: [2, 1], color: 'darkGrey',  pos: [0, 8] }, // leg foot
+      { size: [1, 3], color: 'darkGrey',  pos: [10, 6] }, // lower-right leg
+      { size: [2, 1], color: 'darkGrey',  pos: [11, 8] }, // leg foot
+    ],
+  },
+  {
+    name: 'Battle-Bot', theme: 'mechs', difficulty: 'silhouette', decoys: 3,
+    modelW: 10, modelH: 12, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [4, 3], color: 'orange',    pos: [3, 0] }, // head
+      { size: [2, 1], color: 'lightBlue', pos: [4, 1] }, // visor
+      { size: [1, 1], color: 'red',       pos: [3, 0] }, // antenna light
+      { size: [1, 1], color: 'red',       pos: [6, 0] }, // antenna light
+      { size: [6, 4], color: 'orange',    pos: [2, 3] }, // torso
+      { size: [2, 2], color: 'yellow',    pos: [4, 4] }, // core
+      { size: [1, 1], color: 'red',       pos: [4, 5] }, // core dot
+      { size: [1, 3], color: 'darkGrey',  pos: [0, 4] }, // left arm
+      { size: [1, 3], color: 'darkGrey',  pos: [9, 4] }, // right arm
+      { size: [2, 1], color: 'lightGrey', pos: [0, 7] }, // left claw
+      { size: [2, 1], color: 'lightGrey', pos: [8, 7] }, // right claw
+      { size: [2, 4], color: 'orange',    pos: [2, 7] }, // left leg
+      { size: [2, 4], color: 'orange',    pos: [6, 7] }, // right leg
+      { size: [3, 1], color: 'darkGrey',  pos: [1, 11] }, // foot
+      { size: [3, 1], color: 'darkGrey',  pos: [6, 11] }, // foot
+    ],
+  },
+
+  // ============== BIG BUILDS (L36-L40) — silhouette, decoys ==============
+  {
+    name: 'City Skyline', theme: 'big', difficulty: 'silhouette', decoys: 3,
+    modelW: 14, modelH: 12, finishAnim: 'bobUpDown',
+    steps: [
+      { size: [3, 7], color: 'lightGrey', pos: [0, 4] }, // building 1
+      { size: [2, 10], color: 'darkGrey', pos: [3, 1] }, // tall tower
+      { size: [3, 8], color: 'lightBlue', pos: [5, 3] }, // building 3
+      { size: [2, 11], color: 'lightGrey',pos: [8, 0] }, // tallest spire
+      { size: [3, 9], color: 'orange',    pos: [10, 2] }, // building 5
+      { size: [1, 2], color: 'darkGrey',  pos: [13, 9] }, // small box
+      { size: [1, 1], color: 'yellow',    pos: [1, 5] }, // window
+      { size: [1, 1], color: 'yellow',    pos: [3, 3] }, // window
+      { size: [1, 1], color: 'yellow',    pos: [6, 5] }, // window
+      { size: [1, 1], color: 'yellow',    pos: [9, 2] }, // window
+      { size: [1, 1], color: 'yellow',    pos: [11, 4] }, // window
+      { size: [1, 1], color: 'red',       pos: [8, 0] }, // spire light
+      { size: [14, 1], color: 'green',    pos: [0, 11] }, // ground
+    ],
+  },
+  {
+    name: 'Pirate Ship', theme: 'big', difficulty: 'silhouette', decoys: 3,
+    modelW: 14, modelH: 14, finishAnim: 'driveRight',
+    steps: [
+      { size: [10, 2], color: 'brown',    pos: [2, 10] }, // hull
+      { size: [12, 1], color: 'brown',    pos: [1, 9] }, // deck rim
+      { size: [2, 1], color: 'brown',     pos: [0, 11] }, // hull taper left
+      { size: [2, 1], color: 'brown',     pos: [12, 11] }, // hull taper right
+      { size: [14, 1], color: 'lightBlue',pos: [0, 13] }, // water
+      { size: [1, 9], color: 'brown',     pos: [6, 0] }, // mast
+      { size: [7, 3], color: 'white',     pos: [3, 2] }, // sail 1
+      { size: [5, 2], color: 'white',     pos: [4, 5] }, // sail 2
+      { size: [2, 1], color: 'black',     pos: [5, 3] }, // skull patch
+      { size: [3, 1], color: 'red',       pos: [4, 0] }, // flag
+      { size: [1, 1], color: 'yellow',    pos: [3, 11] }, // porthole
+      { size: [1, 1], color: 'yellow',    pos: [7, 11] }, // porthole
+      { size: [1, 1], color: 'yellow',    pos: [10, 11] }, // porthole
+      { size: [2, 1], color: 'darkGrey',  pos: [10, 8] }, // cannon
+    ],
+  },
+  {
+    name: 'Roller Coaster', theme: 'big', difficulty: 'silhouette', decoys: 3,
+    modelW: 14, modelH: 13, finishAnim: 'driveRight',
+    steps: [
+      { size: [14, 1], color: 'green',    pos: [0, 12] }, // ground
+      { size: [1, 8], color: 'brown',     pos: [1, 4] }, // tall support
+      { size: [1, 6], color: 'brown',     pos: [4, 6] }, // support
+      { size: [1, 4], color: 'brown',     pos: [7, 8] }, // support
+      { size: [1, 6], color: 'brown',     pos: [10, 6] }, // support
+      { size: [1, 8], color: 'brown',     pos: [13, 4] }, // tall support
+      { size: [4, 1], color: 'red',       pos: [0, 3] }, // track peak left
+      { size: [4, 1], color: 'red',       pos: [10, 3] }, // track peak right
+      { size: [3, 1], color: 'red',       pos: [4, 5] }, // dip
+      { size: [3, 1], color: 'red',       pos: [7, 7] }, // valley
+      { size: [3, 1], color: 'red',       pos: [4, 5] }, // overlap accent
+      { size: [2, 2], color: 'yellow',    pos: [1, 1] }, // car
+      { size: [1, 1], color: 'blue',      pos: [1, 0] }, // car head
+      { size: [1, 1], color: 'black',     pos: [1, 3] }, // wheel
+      { size: [1, 1], color: 'black',     pos: [2, 3] }, // wheel
+    ],
+  },
+  {
+    name: 'Dragon', theme: 'big', difficulty: 'silhouette', decoys: 3,
+    modelW: 14, modelH: 12, finishAnim: 'wagTail',
+    steps: [
+      { size: [8, 3], color: 'red',       pos: [3, 5] }, // body
+      { size: [3, 1], color: 'red',       pos: [0, 6] }, // tail base
+      { size: [2, 1], color: 'red',       pos: [0, 7] }, // tail mid
+      { size: [1, 1], color: 'yellow',    pos: [0, 8] }, // tail spike
+      { size: [3, 3], color: 'red',       pos: [10, 3] }, // head
+      { size: [2, 2], color: 'red',       pos: [9, 5] }, // neck
+      { size: [1, 1], color: 'white',     pos: [11, 4] }, // eye
+      { size: [1, 1], color: 'orange',    pos: [13, 5] }, // fire breath
+      { size: [1, 1], color: 'yellow',    pos: [13, 4] }, // fire tip
+      { size: [4, 2], color: 'orange',    pos: [4, 2] }, // left wing
+      { size: [4, 2], color: 'orange',    pos: [5, 0] }, // wing top
+      { size: [1, 1], color: 'yellow',    pos: [4, 4] }, // spine
+      { size: [1, 1], color: 'yellow',    pos: [6, 4] }, // spine
+      { size: [1, 2], color: 'red',       pos: [4, 8] }, // leg
+      { size: [1, 2], color: 'red',       pos: [9, 8] }, // leg
+      { size: [2, 1], color: 'darkGrey',  pos: [4, 10] }, // claw
+      { size: [2, 1], color: 'darkGrey',  pos: [8, 10] }, // claw
+    ],
+  },
+  {
+    name: 'Carnival Wheel', theme: 'big', difficulty: 'silhouette', decoys: 3,
+    modelW: 13, modelH: 13, finishAnim: 'spin',
+    steps: [
+      { size: [13, 1], color: 'green',    pos: [0, 12] }, // ground
+      { size: [1, 5], color: 'darkGrey',  pos: [4, 7] }, // left support
+      { size: [1, 5], color: 'darkGrey',  pos: [8, 7] }, // right support
+      { size: [3, 1], color: 'lightGrey', pos: [5, 6] }, // axle hub
+      { size: [11, 1], color: 'yellow',   pos: [1, 6] }, // horiz spoke
+      { size: [1, 11], color: 'yellow',   pos: [6, 1] }, // vert spoke
+      { size: [3, 1], color: 'red',       pos: [0, 5] }, // top-left cabin
+      { size: [3, 1], color: 'blue',      pos: [10, 5] }, // top-right cabin
+      { size: [3, 1], color: 'orange',    pos: [0, 7] }, // bot-left cabin
+      { size: [3, 1], color: 'green',     pos: [10, 7] }, // bot-right cabin
+      { size: [3, 1], color: 'pink',      pos: [5, 0] }, // top cabin
+      { size: [3, 1], color: 'lightBlue', pos: [5, 11] }, // bottom cabin
+      { size: [1, 1], color: 'red',       pos: [6, 0] }, // top flag
+    ],
+  },
 ];
 
 // ----- Helper: convert grid pos to px relative to baseplate top-left -----
